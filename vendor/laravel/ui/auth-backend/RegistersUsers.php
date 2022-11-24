@@ -44,7 +44,7 @@ trait RegistersUsers
 
         return $request->wantsJson()
                     ? new JsonResponse([], 201)
-                    : redirect($this->redirectPath())->with('status', 'Sukses menambahkan member baru!');
+                    : redirect($this->redirectPath())->with('status', 'Sukses menambahkan pengguna baru.')->with('status2','Password bawaan adalah tanggal lahir pengguna tersebut.');
     }
 
     /**

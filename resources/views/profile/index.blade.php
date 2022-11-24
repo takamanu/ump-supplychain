@@ -22,8 +22,7 @@
         <div class="alert alert-success">
             {{ session('flash_message') }}
         </div>
-    @endif
-    @if (session('flash_message_error'))
+    @elseif (session('flash_message_error'))
         <div class="alert alert-danger">
             {{ session('flash_message_error') }}
         </div>
@@ -38,7 +37,7 @@
         
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">Name</span>
+                <span class="input-group-text bg-primary text-white">Name</span>
             </div>
             <div class="col-md-10">
                 <input type="text" class="form-control" value="{{$agen->name}}" disabled>
@@ -48,7 +47,7 @@
     
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">NIK</span>
+                <span class="input-group-text bg-primary text-white">NIK</span>
             </div>
             <div class="col-md-10">
                 <input type="text" aria-label="nik" class="form-control" value="{{$agen->nik}}" disabled>
@@ -58,7 +57,7 @@
     
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">Email</span>
+                <span class="input-group-text bg-primary text-white">Email</span>
             </div>
             <div class="col-md-10">
                 <input type="text" aria-label="email" class="form-control" value="{{$agen->email}}" disabled>
@@ -68,7 +67,7 @@
     
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">No. Telpon</span>
+                <span class="input-group-text bg-primary text-white">No. Telpon</span>
             </div>
             <div class="col-md-10">
                 <input type="text" aria-label="phone" class="form-control" value="{{$agen->phone}}" disabled>
@@ -77,7 +76,7 @@
         
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">Rekening</span>
+                <span class="input-group-text bg-primary text-white">Rekening</span>
             </div>
             <div class="col-md-10">
                 <input type="text" aria-label="rekening" class="form-control" value="{{$agen->rekening}} ({{$banks->nama_bank}}) " disabled>
@@ -85,7 +84,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">Jenis Kelamin</span>
+                <span class="input-group-text bg-primary text-white">Jenis Kelamin</span>
             </div>
             <div class="col-md-10">
                 <input type="text" aria-label="gender" class="form-control" value="{{$agen->gender}}" disabled>
@@ -93,7 +92,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">Provinsi</span>
+                <span class="input-group-text bg-primary text-white">Provinsi</span>
             </div>
             <div class="col-md-10">
                 <input type="text" aria-label="provinsi" class="form-control" value="{{$provinces->name}}" disabled>
@@ -101,7 +100,7 @@
         </div>      
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">Kabupaten/Kota</span>
+                <span class="input-group-text bg-primary text-white">Kabupaten/Kota</span>
             </div>
             <div class="col-md-10">
                 <input type="text" aria-label="kabupaten" class="form-control" value="{{$regencies->name}}" disabled>
@@ -109,7 +108,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">Kecamatan</span>
+                <span class="input-group-text bg-primary text-white">Kecamatan</span>
             </div>
             <div class="col-md-10">
                 <input type="text" aria-label="kecamatan" class="form-control" value="{{$districts->name}}" disabled>
@@ -117,7 +116,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">Kode Pos</span>
+                <span class="input-group-text bg-primary text-white">Kode Pos</span>
             </div>
             <div class="col-md-10">
                 <input type="text" aria-label="postal_code" class="form-control" value="{{$agen->postal_code}}" disabled>
@@ -125,7 +124,7 @@
         </div>
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">Alamat</span>
+                <span class="input-group-text bg-primary text-white">Alamat</span>
             </div>
             <div class="col-md-10">
                 <input type="text" aria-label="address" class="form-control" value="{{$agen->address}}" disabled>
@@ -133,13 +132,13 @@
         </div>
         <div class="row mb-3">
             <div class="col-md-2">
-                <span class="input-group-text">Password</span>
+                <span class="input-group-text bg-primary text-white">Password</span>
             </div>
             <div class="col-md-10">
                 <input type="password" aria-label="password" class="form-control" value="password123" disabled>
             </div>
         </div>
-        <a href="{{ url('/profile/' . $agen->id . '/edit') }}" class="btn btn-success">Edit
+        <a href="{{ url('/profile/' . $agen->id . '/edit') }}" class="btn btn-success">Edit Profil
         </a>
 
     </div>

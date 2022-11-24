@@ -29,21 +29,47 @@ class AgenController extends Controller
         //     'users' => DB::table('users')->paginate(15)
         // ]);
         $cari = $request->query('cari');
-
         if(!empty($cari)){
-            $dataagen = Agen::where('name','like',"%".$cari."%")
+            if (auth()->user()->role == '1'){
+                $dataagen = Agen::where('name','like',"%".$cari."%")
                 ->sortable()
                 ->paginate(5);
-//
-        }else{
-            $dataagen = Agen::sortable()->paginate(5);
+            } elseif (auth()->user()->role == '2') {
+                $dataagen = Agen::where('name','like',"%".$cari."%")
+                ->whereNot('role', '1')
+                ->sortable()
+                ->paginate(5);
+            } else {
+                $dataagen = Agen::where('name','like',"%".$cari."%")
+                ->where('role', '0')
+                ->sortable()
+                ->paginate(5);
+            }
+        } else {
+            if (auth()->user()->role == '1'){
+                $dataagen = Agen::sortable()->paginate(5);
+            } elseif (auth()->user()->role == '2') {
+                $dataagen = Agen::whereNot('role', '1')
+                ->sortable()->paginate(5);
+            }else {
+                $dataagen = Agen::where('role', '0')->sortable()->paginate(5);
+            }
         }
         return view('agen.index')->with([
             'agen' => $dataagen,
             'cari' => $cari,
         ]);
 
-        $dataagen = Agen::paginate(5);
+        if (auth()->user()->role == '1'){
+            $dataagen = Agen::paginate(5);
+        } elseif (auth()->user()->role == '2') {
+            $dataagen = Agen::whereNot('role', '1')
+            ->paginate(5);
+        } else {
+            $dataagen = Agen::where('role', '0')->paginate(5);
+        }
+        
+        $dataagen = Agen::where('role', '0')->paginate(5);
         return view ('agen.index')->with([
             'agen' => $dataagen,
 
@@ -152,7 +178,7 @@ class AgenController extends Controller
     public function destroy($id)
     {
         Agen::destroy($id);
-        return redirect('agen')->with('status', 'Member berhasil dihapus!');
+        return redirect('agen')->with('status', 'Pengguna berhasil dihapus!');
     }
 
     // public function form(){
