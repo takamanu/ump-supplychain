@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('produk_id');
-            $table->uuid('user_id')->foreignId();
+            $table->char('user_id');
             $table->integer('jumlah_barang');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

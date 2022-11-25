@@ -5,7 +5,7 @@
 
     <div class="card">
         <div class="card-header">
-            Summary
+            Rangkuman
         </div>
         <div class="summary d-flex justify-content-evenly">
             <div class="card-body">
@@ -45,6 +45,9 @@
                 {{ session('fail') }}
             </div>
         @endif
+    </div>
+
+    <div class="card text-center">
         <nav class="nav nav-pills nav-fill">
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-transaksi-tab" data-bs-toggle="tab" data-bs-target="#nav-transaksi"
@@ -69,14 +72,15 @@
                     aria-labelledby="nav-transaksi-tab">
                     <h4>Transaksi Penjualan</h4>
 
-                    <table class="table table-striped">
+                    <table class="table table-striped table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">ID Transaksi</th>
                                 <th scope="col">Tanggal Transaksi</th>
                                 <th scope="col">Nama Produk</th>
-                                <th scope="col">Nama User</th>
+                                <th scope="col">Nama Penjual</th>
+                                <th scope="col">Nama Pembeli</th>
                                 <th scope="col">Jenis Transaksi</th>
                                 <th scope="col">Jumlah Transaksi</th>
                                 <th scope="col">Total Harga</th>
@@ -90,7 +94,8 @@
                                     <td>{{ $transaction->id }}</td>
                                     <td>{{ $transaction->created_at }}</td>
                                     <td>{{ $transaction->produk->nama }}</td>
-                                    <td>{{ $transaction->user->name }}</td>
+                                    <td>{{ $transaction->penjual }}</td>
+                                    <td>{{ $transaction->pembeli }}</td>
                                     <td>{{ $transaction->jenis_transaksi }}</td>
                                     <td>{{ $transaction->jumlah_transaksi }}</td>
                                     <td>{{ $transaction->total_harga }}</td>
@@ -112,7 +117,7 @@
                 <div class="tab-pane fade p-3" id="nav-pemasukan" role="tabpanel" aria-labelledby="nav-pemasukan-tab">
                     <h4>Pemasukan</h4>
 
-                    <table class="table table-striped">
+                    <table class="table table-striped table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -132,7 +137,7 @@
                                     <td>{{ $income->id }}</td>
                                     <td>{{ $income->created_at }}</td>
                                     <td>{{ $income->produk->nama }}</td>
-                                    <td>{{ $income->user->name }}</td>
+                                    <td>{{ $income->pembeli }}</td>
                                     <td>{{ $income->jumlah_transaksi }}</td>
                                     <td>{{ $income->total_harga }}</td>
                                     <td>
@@ -153,7 +158,7 @@
                 <div class="tab-pane fade p-3" id="nav-pengeluaran" role="tabpanel" aria-labelledby="nav-pengeluaran-tab">
                     <h4>Pengeluaran</h4>
 
-                    <table class="table table-striped">
+                    <table class="table table-striped table-responsive">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -173,7 +178,7 @@
                                     <td>{{ $expense->id }}</td>
                                     <td>{{ $expense->created_at }}</td>
                                     <td>{{ $expense->produk->nama }}</td>
-                                    <td>{{ $expense->user->name }}</td>
+                                    <td>{{ $expense->penjual }}</td>
                                     <td>{{ $expense->jumlah_transaksi }}</td>
                                     <td>{{ $expense->total_harga }}</td>
                                     <td>

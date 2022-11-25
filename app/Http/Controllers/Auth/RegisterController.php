@@ -127,6 +127,7 @@ class RegisterController extends Controller
                 
             ]);
         }
+
         $products = Produk::all();
         $idBaru = User::latest('id')->first();
         

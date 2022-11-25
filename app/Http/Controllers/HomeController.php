@@ -31,28 +31,28 @@ class HomeController extends Controller
         $bulan = $date->format('F');
         $tahun = $date->format('Y');
 
-        $masuk = \DB::table('transaksis')->where('jenis_transaksi', 'Penjualan')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->month)->get()->sum('total_harga');
-        $keluar = \DB::table('transaksis')->where('jenis_transaksi', 'Pembelian')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->month)->get()->sum('total_harga');
+        $masuk = \DB::table('transaksis')->where('penjual', auth()->user()->id)->whereMonth('created_at', Carbon::now()->month)->get()->sum('total_harga');
+        $keluar = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereMonth('created_at', Carbon::now()->month)->get()->sum('total_harga');
         
-        $masukTahunan = \DB::table('transaksis')->where('jenis_transaksi', 'Penjualan')->where('user_id', auth()->user()->id)->whereYear('created_at', Carbon::now()->year)->get()->sum('total_harga');
-        $keluarTahunan = \DB::table('transaksis')->where('jenis_transaksi', 'Pembelian')->where('user_id', auth()->user()->id)->whereYear('created_at', Carbon::now()->year)->get()->sum('total_harga');
+        $masukTahunan = \DB::table('transaksis')->where('penjual', auth()->user()->id)->whereYear('created_at', Carbon::now()->year)->get()->sum('total_harga');
+        $keluarTahunan = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereYear('created_at', Carbon::now()->year)->get()->sum('total_harga');
 
         $saldo = $masuk - $keluar;
         $saldoTahunan = $masukTahunan - $keluarTahunan;
 
-        $satuBulanPemasukan = \DB::table('transaksis')->where('jenis_transaksi', 'Penjualan')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(0))->get();
-        $duaBulanPemasukan = \DB::table('transaksis')->where('jenis_transaksi', 'Penjualan')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(1))->get();
-        $tigaBulanPemasukan = \DB::table('transaksis')->where('jenis_transaksi', 'Penjualan')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(2))->get();
-        $empatBulanPemasukan = \DB::table('transaksis')->where('jenis_transaksi', 'Penjualan')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(3))->get();
-        $limaBulanPemasukan = \DB::table('transaksis')->where('jenis_transaksi', 'Penjualan')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(4))->get();
-        $enamBulanPemasukan = \DB::table('transaksis')->where('jenis_transaksi', 'Penjualan')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(5))->get();
+        $satuBulanPemasukan = \DB::table('transaksis')->where('penjual', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(0))->get();
+        $duaBulanPemasukan = \DB::table('transaksis')->where('penjual', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(1))->get();
+        $tigaBulanPemasukan = \DB::table('transaksis')->where('penjual', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(2))->get();
+        $empatBulanPemasukan = \DB::table('transaksis')->where('penjual', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(3))->get();
+        $limaBulanPemasukan = \DB::table('transaksis')->where('penjual', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(4))->get();
+        $enamBulanPemasukan = \DB::table('transaksis')->where('penjual', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(5))->get();
         
-        $satuBulanPengeluaran = \DB::table('transaksis')->where('jenis_transaksi', 'Pembelian')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(0))->get();
-        $duaBulanPengeluaran = \DB::table('transaksis')->where('jenis_transaksi', 'Pembelian')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(1))->get();
-        $tigaBulanPengeluaran = \DB::table('transaksis')->where('jenis_transaksi', 'Pembelian')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(2))->get();
-        $empatBulanPengeluaran = \DB::table('transaksis')->where('jenis_transaksi', 'Pembelian')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(3))->get();
-        $limaBulanPengeluaran = \DB::table('transaksis')->where('jenis_transaksi', 'Pembelian')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(4))->get();
-        $enamBulanPengeluaran = \DB::table('transaksis')->where('jenis_transaksi', 'Pembelian')->where('user_id', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(5))->get();
+        $satuBulanPengeluaran = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(0))->get();
+        $duaBulanPengeluaran = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(1))->get();
+        $tigaBulanPengeluaran = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(2))->get();
+        $empatBulanPengeluaran = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(3))->get();
+        $limaBulanPengeluaran = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(4))->get();
+        $enamBulanPengeluaran = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereMonth('created_at', Carbon::now()->subMonths(5))->get();
 
         $saldoSatuBulan = $satuBulanPemasukan->sum('total_harga') - $satuBulanPengeluaran->sum('total_harga');
         $saldoDuaBulan = $duaBulanPemasukan->sum('total_harga') - $duaBulanPengeluaran->sum('total_harga');
@@ -61,13 +61,13 @@ class HomeController extends Controller
         $saldoLimaBulan = $limaBulanPemasukan->sum('total_harga') - $limaBulanPengeluaran->sum('total_harga');
         $saldoEnamBulan = $enamBulanPemasukan->sum('total_harga') - $enamBulanPengeluaran->sum('total_harga');
         
-        $satuTahunPemasukan = \DB::table('transaksis')->where('jenis_transaksi', 'Penjualan')->where('user_id', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(0))->get();
-        $duaTahunPemasukan = \DB::table('transaksis')->where('jenis_transaksi', 'Penjualan')->where('user_id', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(1))->get();
-        $tigaTahunPemasukan = \DB::table('transaksis')->where('jenis_transaksi', 'Penjualan')->where('user_id', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(2))->get();
+        $satuTahunPemasukan = \DB::table('transaksis')->where('penjual', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(0))->get();
+        $duaTahunPemasukan = \DB::table('transaksis')->where('penjual', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(1))->get();
+        $tigaTahunPemasukan = \DB::table('transaksis')->where('penjual', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(2))->get();
         
-        $satuTahunPenjualan = \DB::table('transaksis')->where('jenis_transaksi', 'Pembelian')->where('user_id', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(0))->get();
-        $duaTahunPenjualan = \DB::table('transaksis')->where('jenis_transaksi', 'Pembelian')->where('user_id', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(1))->get();
-        $tigaTahunPenjualan = \DB::table('transaksis')->where('jenis_transaksi', 'Pembelian')->where('user_id', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(2))->get();
+        $satuTahunPenjualan = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(0))->get();
+        $duaTahunPenjualan = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(1))->get();
+        $tigaTahunPenjualan = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereYear('created_at', Carbon::now()->subYears(2))->get();
 
         $saldoSatuTahun = $satuTahunPemasukan->sum('total_harga') - $satuTahunPenjualan->sum('total_harga');
         $saldoDuaTahun = $duaTahunPemasukan->sum('total_harga') - $duaTahunPenjualan->sum('total_harga');
