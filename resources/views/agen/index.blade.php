@@ -29,6 +29,11 @@
                                 {{ session('status') }}
                             </div>
                         @endif
+                        @if (session('status2'))
+                            <div class="alert alert-success">
+                                {{ session('status2') }}
+                            </div>
+                        @endif
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
