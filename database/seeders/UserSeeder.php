@@ -92,7 +92,7 @@ class UserSeeder extends Seeder
             'password' => Hash::make('member123'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
-
+        ]);
         DB::table('produks')->insert([
             'nama' => 'Tempe',
             'harga' => 5000,
