@@ -23,8 +23,10 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
+        $id = \Ramsey\Uuid\Uuid::uuid4()->toString();
+
         DB::table('users')->insert([
-            'id' => \Ramsey\Uuid\Uuid::uuid4()->toString(),
+            'id' => $id,
             'name' => 'Admin',
             'nik' => '3173087626743672',
             'address' => 'Jl. Mencintaimu No.2 Kampung Gaga',
@@ -90,6 +92,29 @@ class UserSeeder extends Seeder
             'password' => Hash::make('member123'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+
+        DB::table('produks')->insert([
+            'nama' => 'Tempe',
+            'harga' => 5000,
+            'harga_member' => 3000
+        ]);
+
+        DB::table('produks')->insert([
+            'nama' => 'Tahu',
+            'harga' => 5000,
+            'harga_member' => 3000
+        ]);
+
+        DB::table('stocks')->insert([
+            'produk_id' => 1,
+            'user_id' => $id,
+            'jumlah_barang' => 500
+        ]);
+
+        DB::table('stocks')->insert([
+            'produk_id' => 2,
+            'user_id' => $id,
+            'jumlah_barang' => 500
         ]);
     }
 }

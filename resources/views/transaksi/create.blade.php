@@ -8,29 +8,15 @@
         <form method="post" action="/transaksi">
             @csrf
             <div class="mb-3">
-                <label for="jenis_transaksi" class="form-label">Jenis Transaksi</label>
+                <label for="pembeli" class="form-label">Pembeli</label>
                 <br>
-                <select class="form-select form-select-sm @error('jenis_transaksi') is-invalid @enderror" name="jenis_transaksi" required>
-                    <option selected disabled>Pilih Jenis Transaksi</option>
-                    <option value="Pembelian">Pembelian</option>
-                    <option value="Penjualan">Penjualan</option>
-                </select>
-                @error('jenis_transaksi')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="pembeli_id" class="form-label">Pihak Pembeli/Penjual</label>
-                <br>
-                <select name="pembeli_id" id="pembeli_id" class="form-select form-select-sm @error('pembeli_id') is-invalid @enderror" required>
-                    <option selected disabled>Pilih Pembeli/Penjual</option>
+                <select name="pembeli" id="pembeli" class="form-select form-select-sm @error('pembeli') is-invalid @enderror" required>
+                    <option selected disabled>Pilih Pembeli</option>
                     @foreach($users as $user)
                         <option value="{{ $user->id }}">{{ $user->name }}</option>
                     @endforeach
                 </select>
-                @error('pembeli_id')
+                @error('pembeli')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
@@ -75,6 +61,7 @@
                 <br>
                 <select name="metode_pembayaran" id="metode_pembayaran" class="form-select form-select-sm @error('metode_pembayaran') is-invalid @enderror" required>
                     <option selected disabled>Pilih Metode Pembayaran</option>
+                    <option value="0">Cash</option>
                     @foreach($banks as $bank)
                         <option value="{{ $bank->id }}">{{ $bank->nama_bank }}</option>
                     @endforeach

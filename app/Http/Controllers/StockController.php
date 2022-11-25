@@ -15,7 +15,8 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stock = Stock::where('user_id', auth()->user()->id)->get();
+        // return auth()->user()->id;
+        $stock = Stock::all()->where('user_id', auth()->user()->id);
 
         return view('persediaan.stock', [
             'stocks' => $stock
@@ -96,10 +97,12 @@ class StockController extends Controller
      * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stock $stock)
+    public function destroy(Stock $stock, $id)
     {
-        Stock::destroy($stock->id);
+        // Stock::destroy($stock->id);
 
-        return redirect('/persediaan')->with('success', 'Data telah berhasil dihapus');
+        Stock::where('id', $id)->update(['jumlah_barang' => 0]);
+
+        return redirect('/persediaan')->with('success', 'Stock telah berhasil dihapus');
     }
 }

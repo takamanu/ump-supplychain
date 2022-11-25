@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($stocks as $stock)
+          @foreach ($stocks as $stock)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $stock->produk->nama }}</td>
