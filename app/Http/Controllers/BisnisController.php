@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\Produk;
 use App\Models\Transaksi;
+use Illuminate\Support\Facades\DB;
 
 class BisnisController extends Controller
 {

@@ -40,6 +40,8 @@ class UserSeeder extends Seeder
             'gender' => '1',
             'postal_code' => '78456',
             'role' => '1',
+            'date' => Carbon::parse('2000-01-01'),
+            'date_string' => Carbon::parse('2000-01-01')->format('dmY'),
             'avatar' => '/images/default-avatar.svg',
             'password' => Hash::make('admin123'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

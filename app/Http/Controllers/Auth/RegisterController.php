@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Carbon;
 
 
 date_default_timezone_set('Asia/Jakarta');
@@ -69,6 +70,9 @@ class RegisterController extends Controller
             'rekening_type' => ['sometimes', 'integer'],
             'rekening' => ['required', 'string'],
             'gender' => ['required', 'integer'],
+            'role' => ['required', 'integer'],
+            'date' => ['required', 'date'],
+            // 'date_string' => ['required', 'string'],
             // 'password' => ['sometimes', 'string', 'min:8', 'confirmed'],
             'avatar' => ['sometimes', 'image', 'mimes:jpg,jpeg,bmp,svg,png', 'max:5000'],
             
@@ -95,6 +99,9 @@ class RegisterController extends Controller
                 'avatar' => '/images/' . $avatarname,
             ]);
         } else {
+            $get_date_pass = request()->get('date');
+            $pass_date = Carbon::parse($get_date_pass)->format('dmY');
+            // $date_pass = Carbon::createFromFormat('Y-m-d', request()->get('date'))->format('dmY');
             User::create([
                 // 'name' => $data['name'],
                 // 'email' => $data['email'],
@@ -120,9 +127,12 @@ class RegisterController extends Controller
                 'phone' => $data['phone'],
                 'rekening_type' => $data['rekening_type'],
                 'rekening' => $data['rekening'],
+                'role' => $data['role'],
+                'date' => $data['date'],
+                'date_string' => Carbon::parse($get_date_pass)->format('dmY'),
                 // 'added_by' => $data['added_by'],
                 'gender' => $data['gender'],
-                'password' => Hash::make('user123'),
+                'password' => Hash::make($pass_date),
                 
                 
             ]);

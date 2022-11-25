@@ -27,6 +27,9 @@ return new class extends Migration
             $table->string('avatar')->default('/images/default-avatar.svg');
             $table->string('password');
             $table->string('phone');
+            $table->date('date');
+            $table->string('date_string');
+
             // $table->string('added_by');
 
             // Integer data
