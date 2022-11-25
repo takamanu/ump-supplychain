@@ -51,7 +51,7 @@
                             <div class="btn btn-success btn-sm"><i class="bi bi-eye-slash" id="togglePassword"> Toggle Password </i></div>
                         </div>
                         
-                        <button type="sumbit" class="btn btn-success" value="Update">Edit
+                        <button type="sumbit" class="btn btn-success" value="Update">Submit
                         </button>
                     </form>
                     </div>

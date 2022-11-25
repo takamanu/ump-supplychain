@@ -101,7 +101,95 @@
                                             @enderror
                                         </div>
                                     </div>
-                                
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <label for="date" class="form-label">Tanggal</label>
+                                            <input type="date" class="form-control @error('date') is-invalid @enderror" id="date" name="date" value="" placeholder="" required>
+                                            @error('tanggal')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="gender" class="form-label">Jenis Kelamin</label>
+                                            {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="kecamatan" placeholder="" value="" required> --}}
+                                            <select class="form-control @error('gender') is-invalid @enderror" name="gender" id="gender" required>
+                                                <option>Pilih salah satu</option>
+                                                <option value="1">Laki-laki</option>
+                                                <option value="2">Perempuan</option>
+                                                
+                                            </select>
+                                            @error('gender')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                            
+                                        <div class="col-sm-4">
+                                            @if(Auth::user()->role =='1')
+                                                <label for="role" class="form-label">Role</label>
+                                                {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="kecamatan" placeholder="" value="" required> --}}
+                                                <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" required>
+                                                    <option value="0" selected>Member</option>
+                                                    <option value="1">Admin</option>
+                                                    <option value="2">Supervisor</option>
+                                                    
+                                                </select>
+                                                @error('role')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            @elseif(Auth::user()->role =='2')
+                                                <label for="role" class="form-label">Role</label>
+                                                {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="kecamatan" placeholder="" value="" required> --}}
+                                                <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" required>
+                                                    <option value="0" selected>Member</option>
+                                                    <option value="2">Supervisor</option>
+                                                    
+                                                </select>
+                                                @error('role')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            @else
+                                                <label for="role" class="form-label">Role</label>
+                                                {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="kecamatan" placeholder="" value="" required> --}}
+                                                <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" disabled>
+                                                    <option value="0" selected>Member</option>
+                                                    
+                                                </select>
+                                                @error('role')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            @endif
+
+                                        </div>
+                                        {{-- <div class="col-sm-4">
+                                            <label for="bulan" class="form-label">Bulan</label>
+                                            <input type="text" class="form-control @error('bulan') is-invalid @enderror" id="bulan" name="bulan" value="" placeholder="" required>
+                                            @error('bulan')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label for="tahun" class="form-label">Tahun</label>
+                                            <input type="text" class="form-control @error('tahun') is-invalid @enderror" id="tahun" name="tahun" value="" placeholder="" required>
+                                            @error('tahun')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div> --}}
+                                    </div>
                                     <br>
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -131,25 +219,7 @@
                                     </div>
                                     <br>
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                            <label for="gender" class="form-label">Jenis Kelamin</label>
-                                            {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="kecamatan" placeholder="" value="" required> --}}
-                                            <select class="form-control @error('gender') is-invalid @enderror" name="gender" id="gender" required>
-                                                <option>==Pilih Salah Satu==</option>
-                                                <option value="1">Laki-laki</option>
-                                                <option value="2">Perempuan</option>
-                                                
-                                            </select>
-                                            @error('gender')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                            
-                                        <div class="col-sm-6">
-                                            
-                                        </div>
+                                        
                                     </div>
                                     <br><br>
                                     <h4 class="mb-3">Alamat Pengguna</h4>
