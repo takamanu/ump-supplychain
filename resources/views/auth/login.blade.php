@@ -34,7 +34,7 @@
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login Dashboard Admin Kopti Salatiga</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Login Dashboard Kopti Salatiga</h1>
                                     </div>
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
@@ -56,13 +56,15 @@
                                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                                     <label class="form-check-label" for="remember">
-                                                        {{ __('Remember Me') }}
+                                                        {{ __('Ingat saya') }}
                                             </div>
                                         </div>
                                         <hr>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            {{ __('Login') }}
+                                            {{ __('Masuk') }}
                                         </button>
+                                        <br>
+                                        <a href="/helpdesk">Ingin memberi kritik dan saran? Klik ini untuk masuk ke dalam helpdesk.</a>
                                         
                                         {{-- <a href="#" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
