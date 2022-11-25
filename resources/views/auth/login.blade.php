@@ -64,7 +64,7 @@
                                             {{ __('Masuk') }}
                                         </button>
                                         <br>
-                                        <a href="/helpdesk">Ingin memberi kritik dan saran? Klik ini untuk masuk ke dalam helpdesk.</a>
+                                        <p style="color:black;">Ingin memberi kritik dan saran? <a href="/helpdesk">Klik disini.</a></p>
                                         
                                         {{-- <a href="#" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
