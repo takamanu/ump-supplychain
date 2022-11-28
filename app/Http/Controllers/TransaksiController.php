@@ -43,7 +43,7 @@ class TransaksiController extends Controller
         foreach($transaksis as $transaksi) {
             foreach($pembelis as $pembeli) {
                 if($transaksi->pembeli === $pembeli->id) {
-                    $transaksi['pembeli'] = $pembeli->name;
+                    $transaksi['pembeli_nama'] = $pembeli->name;
                 }
             }
         }
@@ -51,7 +51,7 @@ class TransaksiController extends Controller
         foreach($transaksis as $transaksi) {
             foreach($penjuals as $penjual) {
                 if($transaksi->penjual === $penjual->id) {
-                    $transaksi['penjual'] = $penjual->name;
+                    $transaksi['penjual_nama'] = $penjual->name;
                 }
             }
         }
@@ -61,7 +61,7 @@ class TransaksiController extends Controller
         foreach($incomes as $income) {
             foreach($pembelis as $pembeli) {
                 if($income->pembeli === $pembeli->id) {
-                    $income['pembeli'] = $pembeli->name;
+                    $income['pembeli_nama'] = $pembeli->name;
                 }
             }
         }
@@ -69,7 +69,7 @@ class TransaksiController extends Controller
         foreach($incomes as $income) {
             foreach($penjuals as $penjual) {
                 if($income->penjual === $penjual->id) {
-                    $income['penjual'] = $penjual->name;
+                    $income['penjual_nama'] = $penjual->name;
                 }
             }
         }
@@ -79,7 +79,7 @@ class TransaksiController extends Controller
         foreach($expenses as $expense) {
             foreach($pembelis as $pembeli) {
                 if($expense->pembeli === $pembeli->id) {
-                    $expense['pembeli'] = $pembeli->name;
+                    $expense['pembeli_nama'] = $pembeli->name;
                 }
             }
         }
@@ -87,7 +87,7 @@ class TransaksiController extends Controller
         foreach($expenses as $expense) {
             foreach($penjuals as $penjual) {
                 if($expense->penjual === $penjual->id) {
-                    $expense['penjual'] = $penjual->name;
+                    $expense['penjual_nama'] = $penjual->name;
                 }
             }
         }
@@ -97,7 +97,8 @@ class TransaksiController extends Controller
             'incomes' => $incomes,
             'expenses' => $expenses,
             'bulan' => $bulan,
-            'saldo' => $saldo
+            'saldo' => $saldo,
+            'user_id' => $user
         ]);
     }
 

@@ -3,9 +3,13 @@
 @section('container')
     <h2>Informasi Produk</h2>
     <hr>
-    <div class="card d-flex mb-3">
-        <a href="/produk/create" class="btn btn-primary">Tambah Produk</a>
-    </div>
+
+    @if ($userRole === 1)
+        <div class="card d-flex mb-3">
+            <a href="/produk/create" class="btn btn-primary">Tambah Produk</a>
+        </div>
+    @endif
+
 
     @if (session()->has('success'))
         <div class="card-body">
@@ -24,7 +28,9 @@
                 <th scope="col">Nama Produk</th>
                 <th scope="col">Harga</th>
                 <th scope="col">Harga Member</th>
-                <th scope="col">Action</th>
+                @if ($userRole === 1)
+                    <th scope="col">Action</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -35,15 +41,17 @@
                     <td>{{ $product->nama }}</td>
                     <td>{{ $product->harga }}</td>
                     <td>{{ $product->harga_member }}</td>
-                    <td>
-                        <form action="/produk/{{ $product->id }}" method="post" class="d-inline">
-                            @method('delete')
-                            @csrf
-                            <button class="btn btn-danger"
-                                onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i
-                                    class="bi bi-trash"></i></button>
-                        </form>
-                    </td>
+                    @if ($userRole === 1)
+                        <td>
+                            <form action="/produk/{{ $product->id }}" method="post" class="d-inline">
+                                @method('delete')
+                                @csrf
+                                <button class="btn btn-danger"
+                                    onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i
+                                        class="bi bi-trash"></i></button>
+                            </form>
+                        </td>
+                    @endif
                 </tr>
             @endforeach
         </tbody>

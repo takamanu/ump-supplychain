@@ -17,9 +17,12 @@ class ProdukController extends Controller
      */
     public function index()
     {
+        $userRole = auth()->user()->role;
+
         return view('produk.produk', [
             // 'products' => Produk::all()->paginate(10)
-            'products' => \DB::table('produks')->paginate(10)
+            'products' => \DB::table('produks')->paginate(10),
+            'userRole' => $userRole
         ]);
     }
 
@@ -30,6 +33,10 @@ class ProdukController extends Controller
      */
     public function create()
     {
+        if(auth()->user()->role !== 1) {
+            abort(403);
+        }
+
         return view('produk.create');
     }
 
@@ -107,6 +114,10 @@ class ProdukController extends Controller
      */
     public function destroy(Produk $produk)
     {
+        if(auth()->user()->role !== 1) {
+            abort(403);
+        }
+
         Produk::destroy($produk->id);
         Stock::where('produk_id', $produk->id)->delete();
 

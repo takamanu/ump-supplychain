@@ -26,7 +26,7 @@ class BisnisController extends Controller
             'incomes' => Transaksi::all()->where('jenis_transaksi', 'Penjualan'),
             'expenses' => Transaksi::all()->where('jenis_transaksi', 'Pembelian'),
             'bulan' => $bulan,
-            'saldo' => $saldo
+            'saldo' => $saldo,
         ]);
     }
 

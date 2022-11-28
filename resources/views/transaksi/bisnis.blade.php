@@ -35,12 +35,12 @@
     <hr>
 
     <div class="card text-center">
-        @if(session()->has('success'))
+        @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
             </div>
         @endif
-        @if(session()->has('fail'))
+        @if (session()->has('fail'))
             <div class="alert alert-danger" role="alert">
                 {{ session('fail') }}
             </div>
@@ -51,12 +51,12 @@
         <nav class="nav nav-pills nav-fill">
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <button class="nav-link active" id="nav-transaksi-tab" data-bs-toggle="tab" data-bs-target="#nav-transaksi"
-                type="button" role="tab" aria-controls="nav-transaksi" aria-selected="true">
-                Transaksi
-            </button>
-            
-            <button class="nav-link" id="nav-pemasukan-tab" data-bs-toggle="tab" data-bs-target="#nav-pemasukan"
-            type="button" role="tab" aria-controls="nav-pemasukan" aria-selected="true">
+                    type="button" role="tab" aria-controls="nav-transaksi" aria-selected="true">
+                    Transaksi
+                </button>
+
+                <button class="nav-link" id="nav-pemasukan-tab" data-bs-toggle="tab" data-bs-target="#nav-pemasukan"
+                    type="button" role="tab" aria-controls="nav-pemasukan" aria-selected="true">
                     Pemasukan
                 </button>
 
@@ -93,19 +93,31 @@
                                     <td>{{ $transaction->id }}</td>
                                     <td>{{ $transaction->created_at }}</td>
                                     <td>{{ $transaction->produk->nama }}</td>
-                                    <td>{{ $transaction->penjual }}</td>
-                                    <td>{{ $transaction->pembeli }}</td>
+                                    <td>{{ $transaction->penjual_nama }}</td>
+                                    <td>{{ $transaction->pembeli_nama }}</td>
                                     <td>{{ $transaction->jumlah_transaksi }}</td>
                                     <td>{{ $transaction->total_harga }}</td>
-                                    <td>
-                                        <a href="/transaksi/{{ $transaction->id }}" role="button" class="btn btn-info"><i class="bi bi-eye"></i></a>
-                                        <a href="/transaksi/{{ $transaction->id }}/edit" role="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                        <form action="/transaksi/{{ $transaction->id }}" method="post" class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i class="bi bi-trash"></i></button>
-                                        </form>
-                                    </td>
+                                    @if ($transaction->penjual === $user_id)
+                                        <td>
+                                            <a href="/transaksi/{{ $transaction->id }}" role="button"
+                                                class="btn btn-info"><i class="bi bi-eye"></i></a>
+                                            <a href="/transaksi/{{ $transaction->id }}/edit" role="button"
+                                                class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                            <form action="/transaksi/{{ $transaction->id }}" method="post"
+                                                class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <button class="btn btn-danger"
+                                                    onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i
+                                                        class="bi bi-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    @else
+                                        <td>
+                                            <a href="/transaksi/{{ $transaction->id }}" role="button"
+                                                class="btn btn-info"><i class="bi bi-eye"></i></a>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
@@ -135,16 +147,20 @@
                                     <td>{{ $income->id }}</td>
                                     <td>{{ $income->created_at }}</td>
                                     <td>{{ $income->produk->nama }}</td>
-                                    <td>{{ $income->pembeli }}</td>
+                                    <td>{{ $income->pembeli_nama }}</td>
                                     <td>{{ $income->jumlah_transaksi }}</td>
                                     <td>{{ $income->total_harga }}</td>
                                     <td>
-                                        <a href="/transaksi/{{ $income->id }}" role="button" class="btn btn-info"><i class="bi bi-eye"></i></a>
-                                        <a href="/transaksi/{{ $transaction->id }}/edit" role="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="/transaksi/{{ $income->id }}" role="button" class="btn btn-info"><i
+                                                class="bi bi-eye"></i></a>
+                                        <a href="/transaksi/{{ $transaction->id }}/edit" role="button"
+                                            class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         <form action="/transaksi/{{ $income->id }}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
-                                            <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i class="bi bi-trash"></i></button>
+                                            <button class="btn btn-danger"
+                                                onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i
+                                                    class="bi bi-trash"></i></button>
                                         </form>
                                     </td>
                                 </tr>
@@ -153,7 +169,8 @@
                     </table>
                 </div>
 
-                <div class="tab-pane fade p-3" id="nav-pengeluaran" role="tabpanel" aria-labelledby="nav-pengeluaran-tab">
+                <div class="tab-pane fade p-3" id="nav-pengeluaran" role="tabpanel"
+                    aria-labelledby="nav-pengeluaran-tab">
                     <h4>Pengeluaran</h4>
 
                     <table class="table table-striped table-responsive">
@@ -176,17 +193,12 @@
                                     <td>{{ $expense->id }}</td>
                                     <td>{{ $expense->created_at }}</td>
                                     <td>{{ $expense->produk->nama }}</td>
-                                    <td>{{ $expense->penjual }}</td>
+                                    <td>{{ $expense->penjual_nama }}</td>
                                     <td>{{ $expense->jumlah_transaksi }}</td>
                                     <td>{{ $expense->total_harga }}</td>
                                     <td>
-                                        <a href="/transaksi/{{ $expense->id }}" role="button" class="btn btn-info"><i class="bi bi-eye"></i></a>
-                                        <a href="/transaksi/{{ $transaction->id }}/edit" role="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                        <form action="/transaksi/{{ $expense->id }}" method="post" class="d-inline">
-                                            @method('delete')
-                                            @csrf
-                                            <button class="btn btn-danger" onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i class="bi bi-trash"></i></button>
-                                        </form>
+                                        <a href="/transaksi/{{ $expense->id }}" role="button" class="btn btn-info"><i
+                                                class="bi bi-eye"></i></a>
                                     </td>
                                 </tr>
                             @endforeach
