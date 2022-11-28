@@ -21,4 +21,15 @@
             <td>{{ $stock->jumlah_barang }}</td>
         </tr>
     </table>
+
+    <br>
+
+    <a href="/persediaan" role="button" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i>
+        Kembali
+    </a>
+    <a href="/persediaan/{{ $stock->id }}/edit" role="button" class="btn btn-warning">
+        <i class="bi bi-pencil-square"></i>
+        Edit
+    </a>
 @endsection

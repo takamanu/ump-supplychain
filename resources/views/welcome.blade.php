@@ -215,8 +215,67 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                        <canvas id="penjualanChart"></canvas>
+                    <nav class="nav nav-pills nav-fill">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <button class="nav-link active" id="nav-jual-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-jual" type="button" role="tab" aria-controls="nav-jual"
+                                aria-selected="true">
+                                Penjualan
+                            </button>
+
+                            <button class="nav-link" id="nav-beli-tab" data-bs-toggle="tab"
+                                data-bs-target="#nav-beli" type="button" role="tab" aria-controls="nav-beli"
+                                aria-selected="true">
+                                Pembelian
+                            </button>
+
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="new-tabContent">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade active show p-3" id="nav-jual" role="tabpanel"
+                                aria-labelledby="nav-jual-tab">
+                                {{-- <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                            aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Dropdown Header:</div>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div> --}}
+                                <!-- Card Body -->
+                                <div class="chart-pie pt-4 pb-2">
+                                    <canvas id="penjualanChart"></canvas>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade p-3" id="nav-beli" role="tabpanel"
+                                aria-labelledby="nav-beli-tab">
+                                {{-- <div class="dropdown no-arrow">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                            aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Dropdown Header:</div>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div> --}}
+                                <!-- Card Body -->
+                                <div class="chart-pie pt-4 pb-2">
+                                    <canvas id="pembelianChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -454,18 +513,23 @@
         var masukTahun = {{ $masukTahun }};
         var keluarTahun = {{ $keluarTahun }};
 
-        var barChartData = {
+        var barChartDataSatu = {
             labels: bulan,
             datasets: [{
                 label: 'Penjualan Bulanan',
                 backgroundColor: "rgba(0, 0, 255, 0.95)",
                 data: dataPenjualan,
-            }, {
+            }],
+        };
+
+        var barChartDataDua = {
+            labels: bulan,
+            datasets: [{
                 label: 'Pembelian Bulanan',
                 backgroundColor: "rgba(255, 0, 0, 0.95)",
                 data: dataPembelian
             }],
-        };
+        }
 
         var barSaldoBulan = {
             labels: bulan,
@@ -504,7 +568,27 @@
         var ctx = document.getElementById('penjualanChart').getContext('2d');
         var chart = new Chart(ctx, {
             type: 'line',
-            data: barChartData,
+            data: barChartDataSatu,
+            option: {
+                elements: {
+                    rectangle: {
+                        borderWidth: 2,
+                        borderColor: 'rgb(0, 255, 0)',
+                        borderSkipped: 'bottom'
+                    }
+                },
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Grafik Penjualan dan Pembelian Bulanan'
+                }
+            }
+        });
+        
+        var ctxEmpat = document.getElementById('pembelianChart').getContext('2d');
+        var chartEmpat = new Chart(ctxEmpat, {
+            type: 'line',
+            data: barChartDataDua,
             option: {
                 elements: {
                     rectangle: {

@@ -178,14 +178,18 @@ class TransaksiController extends Controller
 
         if($transaksi['pembeli'] === auth()->user()->id) {
             $transaksi['pembeli'] = auth()->user()->name;
+            $transaksi['pembeli_id'] = auth()->user()->id;
         } else {
             $transaksi['pembeli'] = $pembeli[0]->name;
+            $transaksi['pembeli_id'] = $pembeli[0]->id;
         }
         
         if($transaksi['penjual'] === auth()->user()->id) {
             $transaksi['penjual'] = auth()->user()->name;
+            $transaksi['penjual_id'] = auth()->user()->id;
         } else {
             $transaksi['penjual'] = $penjual[0]->name;
+            $transaksi['penjual_id'] = $penjual[0]->id;
         }
         
         return view('transaksi.show', [

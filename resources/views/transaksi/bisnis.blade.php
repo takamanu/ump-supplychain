@@ -122,7 +122,7 @@
                                 <th scope="col">ID Transaksi</th>
                                 <th scope="col">Tanggal Transaksi</th>
                                 <th scope="col">Nama Produk</th>
-                                <th scope="col">Nama User</th>
+                                <th scope="col">Nama Pembeli</th>
                                 <th scope="col">Jumlah Transaksi</th>
                                 <th scope="col">Total Harga</th>
                                 <th scope="col">Action</th>
@@ -163,7 +163,7 @@
                                 <th scope="col">ID Transaksi</th>
                                 <th scope="col">Tanggal Transaksi</th>
                                 <th scope="col">Nama Produk</th>
-                                <th scope="col">Nama User</th>
+                                <th scope="col">Nama Penjual</th>
                                 <th scope="col">Jumlah Transaksi</th>
                                 <th scope="col">Total Harga</th>
                                 <th scope="col">Action</th>
