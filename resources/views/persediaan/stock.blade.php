@@ -32,7 +32,7 @@
                     <td>{{ $stock->jumlah_barang }}</td>
                     <td>
                       <a href="/persediaan/{{ $stock->id }}" role="button" class="btn btn-info"><i class="bi bi-eye"></i></a>
-                      <a href="#" role="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                      <a href="/persediaan/{{ $stock->id }}/edit" role="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                       <form action="/persediaan/{{ $stock->id }}" method="post" class="d-inline">
                         @method('delete')
                         @csrf

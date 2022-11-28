@@ -139,7 +139,7 @@ class RegisterController extends Controller
         }
 
         $products = Produk::all();
-        $idBaru = User::latest('id')->first();
+        $idBaru = User::latest('created_at')->first();
         
         foreach($products as $product) {
             $stock = [

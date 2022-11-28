@@ -6,12 +6,16 @@
 
     <table class="table table-striped">
         <tr>
-            <th>Nama User</th>
-            <td>{{ $transaksi->user->name }}</td>
+            <th>Nama Pembeli</th>
+            <td>{{ $transaksi->pembeli }}</td>
         </tr>
         <tr>
-            <th>Jenis Transaksi</th>
-            <td>{{ $transaksi->jenis_transaksi }}</td>
+            <th>Nama Penjual</th>
+            <td>{{ $transaksi->penjual }}</td>
+        </tr>
+        <tr>
+            <th>Metode Pembayaran</th>
+            <td>{{ $transaksi->bank->nama_bank }}</td>
         </tr>
         <tr>
             <th>Nama Produk</th>

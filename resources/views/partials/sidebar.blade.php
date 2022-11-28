@@ -3,7 +3,8 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
-        <div class="sidebar-brand-text mx-3">Kopti Virtual Office</div>
+        <img src="/koptiLogo.jpg" width="50px" alt="Logo Kopti">
+        <div class="sidebar-brand-text mx-1.5">Kopti Virtual Office</div>
     </a>
 
     <!-- Divider -->

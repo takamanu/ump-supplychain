@@ -17,17 +17,14 @@ return new class extends Migration
             $table->id();
             $table->foreignId('produk_id');
             $table->char('pembeli');
+            $table->foreign('pembeli')->references('id')->on('users')->onDelete('cascade');
             $table->char('penjual');
+            $table->foreign('penjual')->references('id')->on('users')->onDelete('cascade');
             $table->integer('jumlah_transaksi');
             $table->integer('total_harga');
-            $table->char('metode_pembayaran');
+            $table->foreignId('bank_id');
             $table->timestamps();
 
-        });
-
-        Schema::table('transaksis', function (Blueprint $table) { 
-            $table->foreign('pembeli')->references('id')->on('users');
-            $table->foreign('penjual')->references('id')->on('users');
         });
     }
 

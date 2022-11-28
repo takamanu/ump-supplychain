@@ -81,7 +81,6 @@
                                 <th scope="col">Nama Produk</th>
                                 <th scope="col">Nama Penjual</th>
                                 <th scope="col">Nama Pembeli</th>
-                                <th scope="col">Jenis Transaksi</th>
                                 <th scope="col">Jumlah Transaksi</th>
                                 <th scope="col">Total Harga</th>
                                 <th scope="col">Action</th>
@@ -96,12 +95,11 @@
                                     <td>{{ $transaction->produk->nama }}</td>
                                     <td>{{ $transaction->penjual }}</td>
                                     <td>{{ $transaction->pembeli }}</td>
-                                    <td>{{ $transaction->jenis_transaksi }}</td>
                                     <td>{{ $transaction->jumlah_transaksi }}</td>
                                     <td>{{ $transaction->total_harga }}</td>
                                     <td>
                                         <a href="/transaksi/{{ $transaction->id }}" role="button" class="btn btn-info"><i class="bi bi-eye"></i></a>
-                                        <a href="#" role="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="/transaksi/{{ $transaction->id }}/edit" role="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         <form action="/transaksi/{{ $transaction->id }}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
@@ -142,7 +140,7 @@
                                     <td>{{ $income->total_harga }}</td>
                                     <td>
                                         <a href="/transaksi/{{ $income->id }}" role="button" class="btn btn-info"><i class="bi bi-eye"></i></a>
-                                        <a href="#" role="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="/transaksi/{{ $transaction->id }}/edit" role="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         <form action="/transaksi/{{ $income->id }}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
@@ -183,7 +181,7 @@
                                     <td>{{ $expense->total_harga }}</td>
                                     <td>
                                         <a href="/transaksi/{{ $expense->id }}" role="button" class="btn btn-info"><i class="bi bi-eye"></i></a>
-                                        <a href="#" role="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
+                                        <a href="/transaksi/{{ $transaction->id }}/edit" role="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         <form action="/transaksi/{{ $expense->id }}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf

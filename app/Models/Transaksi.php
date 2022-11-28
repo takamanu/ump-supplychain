@@ -11,11 +11,19 @@ class Transaksi extends Model
 
     protected $guarded = ['id'];
 
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function penjual() {
+        return $this->belongsTo(User::class, 'penjual');
+    }
+
+    public function pembeli() {
+        return $this->belongsTo(User::class, 'pembeli');
     }
 
     public function produk() {
         return $this->belongsTo(Produk::class);
+    }
+
+    public function bank() {
+        return $this->belongsTo(Bank::class);
     }
 }

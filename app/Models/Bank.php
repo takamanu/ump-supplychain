@@ -22,4 +22,8 @@ class Bank extends Model
      * @var string
      */
     protected $table = 'banks';
+
+    public function transaksi() {
+        return $this->hasMany(Transaksi::class);
+    }
 }

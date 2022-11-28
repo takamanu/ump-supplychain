@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Stock;
 use App\Http\Requests\StoreStockRequest;
 use App\Http\Requests\UpdateStockRequest;
+use Illuminate\Http\Request;
 
 class StockController extends Controller
 {
@@ -76,7 +77,12 @@ class StockController extends Controller
      */
     public function edit(Stock $stock)
     {
-        //
+        $stock = Stock::all()->where('user_id', auth()->user()->id);
+        $stock = $stock[0];
+
+        return view('persediaan.edit', [
+            'stock' => $stock
+        ]);
     }
 
     /**
@@ -86,9 +92,18 @@ class StockController extends Controller
      * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateStockRequest $request, Stock $stock)
+    public function update(UpdateStockRequest $request, Stock $stock, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'jumlah_barang' => 'required'
+        ]);
+
+        $validatedData['produk_id'] = $id;
+        $validatedData['user_id'] = auth()->user()->id;
+        
+        Stock::where('id', $id)->update($validatedData);
+
+        return redirect('/persediaan')->with('success', 'Stok produk berhasil diubah');
     }
 
     /**

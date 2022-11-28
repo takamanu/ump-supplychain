@@ -196,7 +196,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\storage\\framework/cache/data',
+        'path' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -369,13 +369,13 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\storage\\app',
+        'root' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\storage\\app/public',
+        'root' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\app/public',
         'url' => 'http://kopti.takamanu.shop//storage',
         'visibility' => 'public',
         'throw' => false,
@@ -395,7 +395,7 @@
     ),
     'links' => 
     array (
-      'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\public\\storage' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\storage\\app/public',
+      'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\public\\storage' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -459,13 +459,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -517,7 +517,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -583,7 +583,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\resources\\views/vendor/mail',
+        0 => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -689,7 +689,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\storage\\framework/sessions',
+    'files' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -709,9 +709,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\resources\\views',
+      0 => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\resources\\views',
     ),
-    'compiled' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office\\storage\\framework\\views',
+    'compiled' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\framework\\views',
   ),
   'columnsortable' => 
   array (
@@ -843,7 +843,7 @@
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\virtual-office',
+    'remote_sites_path' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',
