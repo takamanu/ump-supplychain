@@ -75,10 +75,11 @@ class StockController extends Controller
      * @param  \App\Models\Stock  $stock
      * @return \Illuminate\Http\Response
      */
-    public function edit(Stock $stock)
+    public function edit(Stock $stock, $id)
     {
-        $stock = Stock::all()->where('user_id', auth()->user()->id);
-        $stock = $stock[0];
+        $stock = Stock::all()->where('id', $id);
+        $stock_id = $id - 1;
+        $stock = $stock[$stock_id];
 
         return view('persediaan.edit', [
             'stock' => $stock

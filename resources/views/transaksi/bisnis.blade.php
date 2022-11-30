@@ -97,27 +97,10 @@
                                     <td>{{ $transaction->pembeli_nama }}</td>
                                     <td>{{ $transaction->jumlah_transaksi }}</td>
                                     <td>{{ $transaction->total_harga }}</td>
-                                    @if ($transaction->penjual === $user_id)
-                                        <td>
-                                            <a href="/transaksi/{{ $transaction->id }}" role="button"
-                                                class="btn btn-info"><i class="bi bi-eye"></i></a>
-                                            <a href="/transaksi/{{ $transaction->id }}/edit" role="button"
-                                                class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
-                                            <form action="/transaksi/{{ $transaction->id }}" method="post"
-                                                class="d-inline">
-                                                @method('delete')
-                                                @csrf
-                                                <button class="btn btn-danger"
-                                                    onclick="return confirm('Apakah anda yakin akan menghapus data?')"><i
-                                                        class="bi bi-trash"></i></button>
-                                            </form>
-                                        </td>
-                                    @else
-                                        <td>
-                                            <a href="/transaksi/{{ $transaction->id }}" role="button"
-                                                class="btn btn-info"><i class="bi bi-eye"></i></a>
-                                        </td>
-                                    @endif
+                                    <td>
+                                        <a href="/transaksi/{{ $transaction->id }}" role="button" class="btn btn-info"><i
+                                                class="bi bi-eye"></i></a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -151,10 +134,6 @@
                                     <td>{{ $income->jumlah_transaksi }}</td>
                                     <td>{{ $income->total_harga }}</td>
                                     <td>
-                                        <a href="/transaksi/{{ $income->id }}" role="button" class="btn btn-info"><i
-                                                class="bi bi-eye"></i></a>
-                                        <a href="/transaksi/{{ $transaction->id }}/edit" role="button"
-                                            class="btn btn-warning"><i class="bi bi-pencil-square"></i></a>
                                         <form action="/transaksi/{{ $income->id }}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
@@ -169,8 +148,7 @@
                     </table>
                 </div>
 
-                <div class="tab-pane fade p-3" id="nav-pengeluaran" role="tabpanel"
-                    aria-labelledby="nav-pengeluaran-tab">
+                <div class="tab-pane fade p-3" id="nav-pengeluaran" role="tabpanel" aria-labelledby="nav-pengeluaran-tab">
                     <h4>Pengeluaran</h4>
 
                     <table class="table table-striped table-responsive">

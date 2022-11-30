@@ -177,6 +177,8 @@ class TransaksiController extends Controller
         $pembeli = User::where('id', $transaksi->pembeli)->get();
         $penjual = User::where('id', $transaksi->penjual)->get();
 
+        $user = auth()->user()->id;
+
         if($transaksi['pembeli'] === auth()->user()->id) {
             $transaksi['pembeli'] = auth()->user()->name;
             $transaksi['pembeli_id'] = auth()->user()->id;
@@ -194,7 +196,8 @@ class TransaksiController extends Controller
         }
         
         return view('transaksi.show', [
-            'transaksi' => $transaksi
+            'transaksi' => $transaksi,
+            'user' => $user
         ]);
     }
 
