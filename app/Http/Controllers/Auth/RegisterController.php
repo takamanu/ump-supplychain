@@ -6,12 +6,15 @@ use App\Models\Agen;
 use App\Models\User;
 use App\Models\Stock;
 use App\Models\Produk;
+use App\Models\Companies;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
+
 
 
 date_default_timezone_set('Asia/Jakarta');
@@ -59,16 +62,16 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'nik' => ['required', 'string', 'min:16', 'max:16', 'unique:users'],
-            'address' => ['sometimes', 'string'],
-            'provinsi' => ['required', 'integer'],
-            'kabupaten' => ['required', 'integer'],
-            'kecamatan' => ['required', 'integer'],
+            // 'nik' => ['required', 'string', 'min:16', 'max:16', 'unique:users'],
+            // 'address' => ['sometimes', 'string'],
+            // 'provinsi' => ['required', 'integer'],
+            // 'kabupaten' => ['required', 'integer'],
+            // 'kecamatan' => ['required', 'integer'],
             // 'added_by' => ['required', 'string'],
-            'postal_code' => ['sometimes', 'integer', 'digits_between:4,6'],
+            // 'postal_code' => ['sometimes', 'integer', 'digits_between:4,6'],
             'phone' => ['required', 'string', 'min:10', 'max:13'],
-            'rekening_type' => ['sometimes', 'integer'],
-            'rekening' => ['required', 'string'],
+            // 'rekening_type' => ['sometimes', 'integer'],
+            // 'rekening' => ['required', 'string'],
             'gender' => ['required', 'integer'],
             'role' => ['required', 'integer'],
             'date' => ['required', 'date'],
@@ -118,15 +121,16 @@ class RegisterController extends Controller
                 // 'password' => Hash::make('user123'),
                 'name' => $data['name'],
                 'email' => $data['email'],
-                'nik' => $data['nik'],
-                'address' => $data['address'],
-                'provinsi' => $data['provinsi'],
-                'kabupaten' => $data['kabupaten'],
-                'kecamatan' => $data['kecamatan'],
-                'postal_code' => $data['postal_code'],
+                'qr_code' => Str::random(20),
+                // 'nik' => $data['nik'],
+                // 'address' => $data['address'],
+                // 'provinsi' => $data['provinsi'],
+                // 'kabupaten' => $data['kabupaten'],
+                // 'kecamatan' => $data['kecamatan'],
+                // 'postal_code' => $data['postal_code'],
                 'phone' => $data['phone'],
-                'rekening_type' => $data['rekening_type'],
-                'rekening' => $data['rekening'],
+                // 'rekening_type' => $data['rekening_type'],
+                // 'rekening' => $data['rekening'],
                 'role' => $data['role'],
                 'date' => $data['date'],
                 'date_string' => Carbon::parse($get_date_pass)->format('dmY'),
@@ -137,6 +141,31 @@ class RegisterController extends Controller
                 
             ]);
         }
+
+        $companies = Companies::all();
+        $id_new = User::latest('created_at')->first();
+        
+        foreach($companies as $company) {
+            $ncom = [
+                'id' => $company->id,
+                'user_id' => $id_new->id,
+                'qr_code_perusahaan' => Str::random(16),
+                'company_name' => $data['company_name'],
+                'company_location' => $data['company_location'],
+
+            ];
+
+            Companies::create($ncom);
+
+        }
+
+        // Companies::create([
+        //     'user_id' => User::create()->id,
+        //     'qr_code_perusahaan' => Str::random(16),
+        //     'company_name' => $data['company_name'],
+        //     'company_location' => $data['company_location'],
+            
+        // ]);
 
         $products = Produk::all();
         $idBaru = User::latest('created_at')->first();

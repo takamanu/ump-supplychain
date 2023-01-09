@@ -1,10 +1,10 @@
 <?php return array (
   'app' => 
   array (
-    'name' => 'Kopti Virtual Office',
+    'name' => 'Supply Chain',
     'env' => 'local',
     'debug' => true,
-    'url' => 'http://kopti.takamanu.shop/',
+    'url' => 'localhost',
     'asset_url' => NULL,
     'timezone' => 'UTC',
     'locale' => 'en',
@@ -196,7 +196,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\framework/cache/data',
+        'path' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -240,7 +240,7 @@
         'driver' => 'octane',
       ),
     ),
-    'prefix' => 'kopti_virtual_office_cache_',
+    'prefix' => 'supply_chain_cache_',
   ),
   'cors' => 
   array (
@@ -279,7 +279,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'kopti',
+        'database' => 'supplychain',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -289,7 +289,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'kopti',
+        'database' => 'supplychain',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -309,7 +309,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'kopti',
+        'database' => 'supplychain',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -324,7 +324,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'kopti',
+        'database' => 'supplychain',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -339,7 +339,7 @@
       'options' => 
       array (
         'cluster' => 'redis',
-        'prefix' => 'kopti_virtual_office_database_',
+        'prefix' => 'supply_chain_database_',
       ),
       'default' => 
       array (
@@ -369,14 +369,14 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\app',
+        'root' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\storage\\app',
         'throw' => false,
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\app/public',
-        'url' => 'http://kopti.takamanu.shop//storage',
+        'root' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\storage\\app/public',
+        'url' => 'localhost/storage',
         'visibility' => 'public',
         'throw' => false,
       ),
@@ -395,7 +395,7 @@
     ),
     'links' => 
     array (
-      'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\public\\storage' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\app/public',
+      'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\public\\storage' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -459,13 +459,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -517,7 +517,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\logs/laravel.log',
+        'path' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -576,14 +576,14 @@
     'from' => 
     array (
       'address' => 'hello@example.com',
-      'name' => 'Kopti Virtual Office',
+      'name' => 'Supply Chain',
     ),
     'markdown' => 
     array (
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\resources\\views/vendor/mail',
+        0 => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -650,7 +650,7 @@
       2 => '127.0.0.1',
       3 => '127.0.0.1:8000',
       4 => '::1',
-      5 => 'kopti.takamanu.shop',
+      5 => '',
     ),
     'guard' => 
     array (
@@ -689,7 +689,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\framework/sessions',
+    'files' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -698,7 +698,7 @@
       0 => 2,
       1 => 100,
     ),
-    'cookie' => 'kopti_virtual_office_session',
+    'cookie' => 'supply_chain_session',
     'path' => '/',
     'domain' => NULL,
     'secure' => NULL,
@@ -709,9 +709,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\resources\\views',
+      0 => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\resources\\views',
     ),
-    'compiled' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office\\storage\\framework\\views',
+    'compiled' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain\\storage\\framework\\views',
   ),
   'columnsortable' => 
   array (
@@ -843,7 +843,7 @@
     array (
     ),
     'enable_runnable_solutions' => NULL,
-    'remote_sites_path' => 'C:\\Users\\andre\\VSCode_UNNES\\virtual-office',
+    'remote_sites_path' => 'C:\\Users\\fauza\\OneDrive - mail.unnes.ac.id\\Desktop\\Projects\\nia_ojan\\ump-supplychain',
     'local_sites_path' => '',
     'housekeeping_endpoint_prefix' => '_ignition',
     'settings_file_path' => '',

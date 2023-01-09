@@ -15,9 +15,10 @@ return new class extends Migration
     {
         Schema::create('produks', function (Blueprint $table) {
             $table->id();
+            $table->char('user_id', 36);
+            $table->string('qr_code_produk');
             $table->string('nama')->unique();
-            $table->integer('harga');
-            $table->integer('harga_member');
+            $table->string('created_by');
             $table->timestamps();
         });
     }

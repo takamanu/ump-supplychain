@@ -3,8 +3,8 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
-        <img src="/koptiLogo.jpg" width="50px" alt="Logo Kopti">
-        <div class="sidebar-brand-text mx-1.5">Kopti Virtual Office</div>
+        {{-- <img src="/koptiLogo.jpg" width="50px" alt="Logo Kopti"> --}}
+        <div class="sidebar-brand-text mx-1.5">Supply Chain</div>
     </a>
 
     <!-- Divider -->
@@ -26,7 +26,7 @@
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item {{ Request::is('transaksi') || Request::is('persediaan') ? 'active' : '' }}">
+    {{-- <li class="nav-item {{ Request::is('transaksi') || Request::is('persediaan') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
             aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
@@ -38,21 +38,21 @@
                 <a class="collapse-item {{ Request::is('persediaan') ? 'active' : '' }}" href="/persediaan">Stok Barang</a>
             </div>
         </div>
-    </li>
+    </li> --}}
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item {{ Request::is('agen') || Request::is('agen/create') || Request::is('agen/*') ? 'active' : '' }}">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
             aria-expanded="true" aria-controls="collapseUtilities">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Keagenan</span>
+            <span>Staff</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Fitur Keagenan:</h6>
-                <a class="collapse-item {{ Request::is('agen/create') ? 'active' : '' }}" href="{{ url('/agen/create') }}">Tambah Agen</a>
-                <a class="collapse-item {{ Request::is('agen') or Request::is('agen/[1-99999]')  ? 'active' : '' }}" href="/agen">List Agen</a>
+                {{-- <h6 class="collapse-header">Fitur Keagenan:</h6> --}}
+                <a class="collapse-item {{ Request::is('agen/create') ? 'active' : '' }}" href="{{ url('/agen/create') }}">Add Staff</a>
+                <a class="collapse-item {{ Request::is('agen') or Request::is('agen/[1-99999]')  ? 'active' : '' }}" href="/agen">Staff List</a>
             </div>
         </div>
     </li>

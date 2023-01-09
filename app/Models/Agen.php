@@ -20,4 +20,14 @@ class Agen extends Model
 
     public $sortable = ['name', 'email', 'password'];
 
+    public function companies()
+    {
+        return $this->hasOne(Companies::class, 'user_id', 'id');
+    }
+
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'user_id', 'id');
+    }
+
 }

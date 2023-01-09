@@ -6,12 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Agen;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\DB;
 use App\Models\Province;
 use App\Models\Regency;
 use App\Models\District;
-use App\Models\Village;
 use App\Models\Bank;
+use App\Models\User;
+use App\Models\Companies;
+use Illuminate\Support\Facades\Auth;
 
 date_default_timezone_set('Asia/Jakarta');
 
@@ -28,7 +29,14 @@ class AgenController extends Controller
         // return view('user.index', [
         //     'users' => DB::table('users')->paginate(15)
         // ]);
+        // $agen = User::all();
+        // dd($agen);
+        // $agen = User::where('name', 'Admin');
+        // $company = Companies::all();
+        // $agen = Agen::where('id', '6f614bd5-5c67-4942-8d25-64a56fb74930')->first();
+        // return $agen->produk;
         $cari = $request->query('cari');
+        
         if(!empty($cari)){
             if (auth()->user()->role == '1'){
                 $dataagen = Agen::where('name','like',"%".$cari."%")
@@ -68,7 +76,6 @@ class AgenController extends Controller
         } else {
             $dataagen = Agen::where('role', '0')->paginate(5);
         }
-        
         $dataagen = Agen::where('role', '0')->paginate(5);
         return view ('agen.index')->with([
             'agen' => $dataagen,
@@ -181,6 +188,32 @@ class AgenController extends Controller
         return redirect('agen')->with('status', 'Pengguna berhasil dihapus!');
     }
 
+    public function validasiQR(Request $request)
+    {
+//        dd($request->qr_code);
+
+        $user = User::where('qr_code', $request->qr_code)->first();
+
+        Auth::loginUsingId($user->id);
+
+
+
+        if($user!=null){
+            return response()
+            // ->redirect()->route('home')
+            ->json(['nama' => $user->name])
+            ->withCallback($request->input('callback'));
+            
+        } else {
+            return response()->json([
+                "status_error" => "Gagal Login"
+            ]);
+
+        }
+
+        
+    }
+
     // public function form(){
     //     $provinces = Province::all();
     //     $regencies = Regency::all();
@@ -195,6 +228,7 @@ class AgenController extends Controller
             echo "<option value='$kabupaten->id'>$kabupaten->name</option>";
         }
     }
+
 
     public function getkecamatan(Request $request){
         $id_kabupaten = $request->id_kabupaten;

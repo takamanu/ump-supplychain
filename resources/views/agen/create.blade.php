@@ -46,7 +46,7 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <div class="card">
-        <div class="card-header"><b>Tambah Member Kopti Salatiga</b></div>
+        <div class="card-header"><b>Add Staff</b></div>
         
         <div class="card-body">
             
@@ -58,9 +58,9 @@
                             <form method="POST" action="{{ route('register') }}">
                                 @csrf
                                 <div class="col-12">
-                                    <h4 class="mb-3">Identitas Pengguna</h4>
+                                    <h4 class="mb-3">Staff Identity</h4>
                                     
-                                    <label for="name" class="form-label">Nama Lengkap</label>
+                                    <label for="name" class="form-label">Full name</label>
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                     
                                     @error('name')
@@ -69,22 +69,41 @@
                                         </span>
                                     @enderror
                             
-                                    <br>
-                                    <label for="email" class="form-label">Email</label>
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-        
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
+                                    
+                                    
                                 
                                     <br>
                                     <div class="row">
                                         <div class="col-sm-6">
-                                            <label for="nik" class="form-label">NIK</label>
-                                            <input type="text" class="form-control @error('nik') is-invalid @enderror" id="nik" name="nik" value="{{ old('nik') }}" placeholder="" required>
-                                            @error('nik')
+                                            <label for="company_name" class="form-label">Company name</label>
+                                            <input id="company_name" type="text" class="form-control @error('company_name') is-invalid @enderror" name="company_name" value="{{ old('company_name') }}" required autocomplete="name" autofocus>
+                                            
+                                            @error('company_name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror   
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label for="company_location" class="form-label">Company location</label>
+                                            <input id="company_location" type="text" class="form-control @error('company_location') is-invalid @enderror" name="company_location" value="{{ old('company_location') }}" required autocomplete="name" autofocus>
+                                            
+                                            @error('company_location')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror  
+                                        </div>
+                                    </div>
+
+                                    
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                
+                                            @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -92,7 +111,7 @@
                                         </div>
                             
                                         <div class="col-sm-6">
-                                            <label for="telepon" class="form-label">No. Telepon</label>
+                                            <label for="telepon" class="form-label">Phone number</label>
                                             <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}" placeholder="" required>
                                             @error('phone')
                                                 <span class="invalid-feedback" role="alert">
@@ -104,7 +123,7 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-sm-4">
-                                            <label for="date" class="form-label">Tanggal</label>
+                                            <label for="date" class="form-label">Date</label>
                                             <input type="date" class="form-control @error('date') is-invalid @enderror" id="date" name="date" value="" placeholder="" required>
                                             @error('tanggal')
                                                 <span class="invalid-feedback" role="alert">
@@ -113,12 +132,12 @@
                                             @enderror
                                         </div>
                                         <div class="col-sm-4">
-                                            <label for="gender" class="form-label">Jenis Kelamin</label>
+                                            <label for="gender" class="form-label">Gender</label>
                                             {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="kecamatan" placeholder="" value="" required> --}}
                                             <select class="form-control @error('gender') is-invalid @enderror" name="gender" id="gender" required>
-                                                <option>Pilih salah satu</option>
-                                                <option value="1">Laki-laki</option>
-                                                <option value="2">Perempuan</option>
+                                                <option>Choose gender</option>
+                                                <option value="1">Male</option>
+                                                <option value="2">Female</option>
                                                 
                                             </select>
                                             @error('gender')
@@ -133,9 +152,13 @@
                                                 <label for="role" class="form-label">Role</label>
                                                 {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="kecamatan" placeholder="" value="" required> --}}
                                                 <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" required>
-                                                    <option value="0" selected>Member</option>
-                                                    <option value="1">Admin</option>
-                                                    <option value="2">Supervisor</option>
+                                                    <option value="2" selected>Customer</option>
+                                                    <option value="1">Retailer</option>
+                                                    <option value="1">Transport</option>
+                                                    <option value="1">Vendor</option>
+                                                    <option value="1">Warehouse</option>
+                                                    <option value="1">Wholesaler</option>
+                                                    <option value="0">Manufacturer</option>
                                                     
                                                 </select>
                                                 @error('role')
@@ -147,8 +170,13 @@
                                                 <label for="role" class="form-label">Role</label>
                                                 {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="kecamatan" placeholder="" value="" required> --}}
                                                 <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" required>
-                                                    <option value="0" selected>Member</option>
-                                                    <option value="2">Supervisor</option>
+                                                    <option value="2" selected>Customer</option>
+                                                    <option value="1">Retailer</option>
+                                                    <option value="1">Transport</option>
+                                                    <option value="1">Vendor</option>
+                                                    <option value="1">Warehouse</option>
+                                                    <option value="1">Wholesaler</option>
+                                                    <option value="0">Manufacturer</option>
                                                     
                                                 </select>
                                                 @error('role')
@@ -159,8 +187,14 @@
                                             @else
                                                 <label for="role" class="form-label">Role</label>
                                                 {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="kecamatan" placeholder="" value="" required> --}}
-                                                <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" disabled>
-                                                    <option value="0" selected>Member</option>
+                                                <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" required>
+                                                    <option value="2" selected>Customer</option>
+                                                    <option value="1">Retailer</option>
+                                                    <option value="1">Transport</option>
+                                                    <option value="1">Vendor</option>
+                                                    <option value="1">Warehouse</option>
+                                                    <option value="1">Wholesaler</option>
+                                                    <option value="0">Manufacturer</option>
                                                     
                                                 </select>
                                                 @error('role')
@@ -191,7 +225,7 @@
                                         </div> --}}
                                     </div>
                                     <br>
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-sm-6">
                                             <label for="rekening_type" class="form-label">Nama Bank</label>
                                             <select class="form-control @error('rekening_type') is-invalid @enderror" name="rekening_type" id="rekening_type" required>
@@ -216,93 +250,9 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
-                                        
-                                    </div>
+                                    </div> --}}
                                     <br><br>
-                                    <h4 class="mb-3">Alamat Pengguna</h4>
-                                    
                                 
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <label for="provinsi" class="form-label">Provinsi</label>
-                                            {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="province" placeholder="" value="" required> --}}
-                                            <select class="form-control @error('provinsi') is-invalid @enderror" name="provinsi" id="provinsi" required>
-                                                <option>Pilih salah satu</option>
-                                                
-                                                @foreach ($provinces as $provinsi)
-                                                    <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('provinsi')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                            
-                                        <div class="col-sm-6">
-                                            <label for="city" class="form-label">Kota/Kabupaten</label>
-                                            {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="city" placeholder="" value="" required> --}}
-                                            <select class="form-control @error('city') is-invalid @enderror" name="kabupaten" id="kabupaten" required>
-                                                <option>Pilih salah satu</option>
-                                                
-                                                {{-- @foreach ($regencies as $kabupaten)
-                                                    <option value="{{ $kabupaten->name }}">{{ $kabupaten->name }}</option>
-                                                @endforeach --}}
-                                            </select>
-                                            @error('city')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <br>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <label for="kecamatan" class="form-label">Kecamatan</label>
-                                            {{-- <input type="text" class="form-control @error('') is-invalid @enderror" id="kecamatan" placeholder="" value="" required> --}}
-                                            <select class="form-control @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan" required>
-                                                <option>Pilih salah satu</option>
-                                                {{-- @foreach ($districts as $kecamatan)
-                                                    <option value="{{ $kecamatan->name }}">{{ $kecamatan->name }}</option>
-                                                @endforeach --}}
-                                            </select>
-                                            @error('kecamatan')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                            
-                                        <div class="col-sm-6">
-                                            <label for="postal_code" class="form-label">Kode Pos</label>
-                                            <input type="text" class="form-control @error('postal_code') is-invalid @enderror" id="postal_code" name="postal_code" value="{{ old('postal_code') }}" placeholder="" required>
-                                            @error('postal_code')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                
-                                    <br>
-                                    <label for="address" class="form-label">Alamat</label>
-                                    <textarea rows="3" class="form-control @error('address') is-invalid @enderror" id="address" name="address" value="{{ old('address') }}" style="resize:none"></textarea>
-                                    @error('address')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                    <br>
-                                    
-                                    
-                                </div>
-                                <br>
                                 <a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Tambah') }}
@@ -382,6 +332,7 @@
     });
     
 </script>
+
 </body>
 
 @stop

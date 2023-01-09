@@ -20,9 +20,9 @@ return new class extends Migration
             
             // String data
             $table->string('name');
-            $table->bigInteger('nik')->unique();
-            $table->string('address');
-            
+            // $table->bigInteger('nik')->unique();
+            // $table->string('address');
+            $table->string('qr_code');
             $table->string('email')->unique();
             $table->string('avatar')->default('/images/default-avatar.svg');
             $table->string('password');
@@ -33,13 +33,13 @@ return new class extends Migration
             // $table->string('added_by');
 
             // Integer data
-            $table->integer('rekening_type');
-            $table->bigInteger('provinsi');
-            $table->bigInteger('kabupaten');
-            $table->bigInteger('kecamatan');
-            $table->string('rekening');
+            // $table->integer('rekening_type');
+            // $table->bigInteger('provinsi');
+            // $table->bigInteger('kabupaten');
+            // $table->bigInteger('kecamatan');
+            // $table->string('rekening');
             $table->integer('gender');
-            $table->bigInteger('postal_code');
+            // $table->bigInteger('postal_code');
             $table->integer('role')->default(0);
             
             

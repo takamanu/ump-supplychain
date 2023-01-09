@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Produk;
 use App\Models\User;
 use App\Models\Stock;
-use App\Http\Controllers\DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProdukController extends Controller
 {
@@ -17,12 +18,13 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $userRole = auth()->user()->role;
+        $dataproduk = Produk::all();
+        // $produk = Produk::where('id', '1')->first();
+        // return $produk->user->name;
 
-        return view('produk.produk', [
-            // 'products' => Produk::all()->paginate(10)
-            'products' => \DB::table('produks')->paginate(10),
-            'userRole' => $userRole
+        return view('produk.produk')->with([
+            'products' => $dataproduk,
+            
         ]);
     }
 
@@ -122,5 +124,28 @@ class ProdukController extends Controller
         Stock::where('produk_id', $produk->id)->delete();
 
         return redirect('/produk')->with('success', 'Data telah berhasil dihapus!');
+    }
+
+    public function getProdukName(Request $request)
+    {
+//        dd($request->qr_code);
+
+        // $user = User::where('qr_code', $request->qr_code)->first();
+
+        // Auth::loginUsingId($user->id);
+        Produk::create([
+            'user_id' => Auth::user()->id,
+            'qr_code_produk' => $request->qr_value,
+            'nama' => $request->onlyProdname,
+            'created_by' => $request->username,
+        ]);
+        // $waktu = date('H:i');
+        // $absen = "Hadir $waktu";
+
+        // $mahasiswa = Produk::where('qr_code', $request->qr_code)->first();
+        // $mahasiswa->absen2 = $absen;
+        // $mahasiswa->save();
+
+        
     }
 }

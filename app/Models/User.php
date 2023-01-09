@@ -22,23 +22,26 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    protected $guarded = ['id'];
     protected $fillable = [
         'name',
         'email',
+        'qr_code',
         'password',
         'avatar',
-        'nik',
-        'address',
-        'provinsi',
-        'kabupaten',
-        'kecamatan',
-        'postal_code',
+        // 'nik',
+        // 'address',
+        // 'provinsi',
+        // 'kabupaten',
+        // 'kecamatan',
+        // 'postal_code',
         'phone',
         'role',
         'date',
         'date_string',
-        'rekening',
-        'rekening_type',
+        // 'rekening',
+        // 'rekening_type',
         'gender',
         
     ];
@@ -62,6 +65,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function produk()
+    {
+        return $this->hasMany(Produk::class, 'user_id', 'id');
+    }
+
+    public function companies()
+    {
+        return $this->hasOne(Companies::class);
+    }
 
     public function transaksi() {
         return $this->hasMany(Transaksi::class);

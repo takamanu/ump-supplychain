@@ -28,6 +28,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::post('validasi/qr',[\App\Http\Controllers\AgenController::class,'validasiQR'])->name('validasiqr');
+
 // Route::get('/persediaan', [BisnisController::class, 'stock']);
 // Route::prefix('admin')->middleware(['auth', 'admin'])->group(function(){
 
@@ -44,6 +46,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/', function () {
         return redirect('home');
     });
+
     Route::resource('/transaksi', TransaksiController::class);
     Route::resource('/persediaan', ProdukController::class);
     Route::resource('/agen', AgenController::class);
@@ -53,6 +56,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/register', RegistersUsers::class);
     Route::resource('/profile', ProfileController::class);
     Route::get('/agen/create', [AgenController::class, 'create'])->name('create');
+    Route::post('getProdukName', [ProdukController::class, 'getProdukName'])->name('getProdukName');
     Route::post('getkabupaten', [AgenController::class, 'getkabupaten'])->name('getkabupaten');
     Route::post('getkecamatan', [AgenController::class, 'getkecamatan'])->name('getkecamatan');
     Route::get('/agen/show/{item}', [AgenController::class, 'show']);
