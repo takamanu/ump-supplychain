@@ -8,7 +8,7 @@
             <div class="container">
                 <main>
                     <div class="row g-10">
-                        <div class="col-md-7 col-lg-8">
+                        <div class="col">
                             <div class="row">
                                 <div class="col-md-4 d-flex justify-content-center"><h3><b>Qr Code</b></h3></div>
                             </div>

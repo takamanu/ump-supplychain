@@ -32,7 +32,7 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            {{-- <div class="col-lg-6 d-flex justify-content-center"><img src="koptiLogo.jpg" alt="Kopti"/></div> --}}
+                            <div class="col-lg-6 d-flex justify-content-center"><img src="scmslogo.png" width="100%" alt="Kopti"/></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
@@ -187,10 +187,12 @@
                 console.log("Test");
                 let html5QrcodeScanner = new Html5QrcodeScanner(
                 "reader",
-                { fps: 30, qrbox: {width: 1200, height: 1200} },
+                { fps: 30, qrbox: {width: 600, height: 600} },
                 /* verbose= */ false);
                 html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+                console.log("Tes sampai sini")
                 $('#tutupqr').click(function(){
+                    
                     console.log("Test tutup");
                     html5QrcodeScanner.clear().then(_ => {
                         // the UI should be cleared here      

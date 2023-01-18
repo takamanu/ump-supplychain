@@ -75,17 +75,17 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item {{ Request::is('produk') ? 'active' : '' }}" href="/produk">Produk</a>
-                <a class="collapse-item {{ Request::is('katalog') ? 'active' : '' }}" href="/katalog">Katalog</a>
+                <a class="collapse-item {{ Request::is('katalog') ? 'active' : '' }}" href="/katalog">Kirim</a>
             </div>
         </div>
     </li>
 
     <!-- Nav Item - Charts -->
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link collapsed {{ Request::is('profil') ? 'active' : '' }}" href="/profile">
             <i class="fas fa-fw fa-chart-area"></i>
             <span>Profil</span></a>
-    </li>
+    </li> --}}
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
