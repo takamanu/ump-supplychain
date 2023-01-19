@@ -35,9 +35,6 @@ class ProdukController extends Controller
      */
     public function create()
     {
-        if(auth()->user()->role !== 1) {
-            abort(403);
-        }
 
         return view('produk.create');
     }
