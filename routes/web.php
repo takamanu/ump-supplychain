@@ -53,6 +53,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/persediaan', StockController::class);
     Route::resource('/produk', ProdukController::class);
     Route::get('/katalog', [KatalogController::class, 'index']);
+    Route::get('/katalog/create', [KatalogController::class, 'create']);
     Route::resource('/register', RegistersUsers::class);
     Route::resource('/profile', ProfileController::class);
     Route::get('/agen/create', [AgenController::class, 'create'])->name('create');

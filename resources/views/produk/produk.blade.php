@@ -223,11 +223,35 @@
                         confirmButtonColor:'#3085d6',
                         confirmButtonText:'Ok',
                         html:
-                                '<b>'+ result +'</b>, ', 
+                                result,
+                    }).then((result)=>{
+                        contract.methods.getTotalValue(id).call(function(err, result) {
+                        console.log(err, result)
+                        Swal.fire({
+                            icon : 'success',
+                            title : 'Sukses! ',
+                            confirmButtonColor:'#3085d6',
+                            confirmButtonText:'Ok',
+                            html:
+                                    '<b>Your total carbon footprint is: <span style="color:blue">'+ result +' kg Co2</span></b>', 
+                            })
+                        })
+
                     })
                     // $(".cardstyle").show("fast","linear");
                     // $("#database").html(result);
                 });
+                // contract.methods.getTotalValue(id).call(function(err, result) {
+                //     console.log(err, result)
+                //     Swal.fire({
+                //         icon : 'success',
+                //         title : 'Sukses! ',
+                //         confirmButtonColor:'#3085d6',
+                //         confirmButtonText:'Ok',
+                //         html:
+                //                 '<b>Total of your carbon footprint: '+ result +' kg Co2</b>, ', 
+                //     })
+                // });
                 // $("#staticBackdrop").modal('toggle');
                 // if(result.value){
                 //     $.ajax({

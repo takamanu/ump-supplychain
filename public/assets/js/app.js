@@ -39,6 +39,24 @@ var contractAbi = [
   {
     inputs: [
       {
+        internalType: "uint256",
+        name: "_productId",
+        type: "uint256",
+      },
+      {
+        internalType: "uint256",
+        name: "value",
+        type: "uint256",
+      },
+    ],
+    name: "addValue",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
         internalType: "string",
         name: "_a",
         type: "string",
@@ -103,6 +121,25 @@ var contractAbi = [
     stateMutability: "nonpayable",
     type: "function",
   },
+  {
+    inputs: [
+      {
+        internalType: "uint256",
+        name: "_productId",
+        type: "uint256",
+      },
+    ],
+    name: "getTotalValue",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
 ]; // Paste Contract Here
 
-var contractAddress = "0x65202E3eFfC050b5353d54b03C90D858F06ff33D"; // Paste Address here
+var contractAddress = "0xABA572Aab103ff08DaBf72658f9D6AA2Ae52E95A"; // Paste Address here

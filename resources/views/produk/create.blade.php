@@ -196,23 +196,6 @@
           // Set the Contract
         var contract = new web3.eth.Contract(contractAbi, contractAddress);
 
-
-
-        $("#manufacturer").on("click", function(){
-            $("#districard").hide("fast","linear");
-            $("#manufacturercard").show("fast","linear");
-        });
-
-        $("#distributor").on("click", function(){
-            $("#manufacturercard").hide("fast","linear");
-            $("#districard").show("fast","linear");
-        });
-
-        $("#closebutton").on("click", function(){
-            $(".customalert").hide("fast","linear");
-        });
-
-
         $('#form1').on('submit', function(event) {
             $.ajaxSetup({
                 headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
@@ -275,29 +258,6 @@
             $("#prodname").val('');
             
         });
-
-        $('#form2').on('submit', function(event) {
-            event.preventDefault(); // to prevent page reload when form is submitted
-            prodid = $('#prodid').val();
-            prodlocation = $('#prodlocation').val();
-            console.log(prodid);
-            console.log(prodlocation);
-            var today = new Date();
-            var thisdate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-            var info = "<br><br><b>Date: "+thisdate+"</b><br>Location: "+prodlocation;
-            web3.eth.getAccounts().then(async function(accounts) {
-              var receipt = await contract.methods.addState(prodid, info).send({ from: accounts[0], gas: 1000000 })
-              .then(receipt => {
-                  var msg="Item has been updated ";
-                  $("#alertText").html(msg);
-                  $("#qrious").hide();
-                  $("#bottomText").hide();
-                  $(".customalert").show("fast","linear");
-              });
-            });
-            $("#prodid").val('');
-            $("#prodlocation").val('');
-          });
 
 
         function isInputNumber(evt){

@@ -9,4 +9,8 @@ class KatalogController extends Controller
     public function index() {
         return view('katalog.index');
     }
+
+    public function create() {
+        return view('katalog.create');
+    }
 }
