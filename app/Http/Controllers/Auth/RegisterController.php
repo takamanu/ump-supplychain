@@ -91,11 +91,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         if (request()->only('name', 'email', 'password')) {
+            $password_crypt = Hash::make((request()->input('password')));
             User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'qr_code' => Str::random(20),
-                'password' => Hash::make('password'),
+                'password' => $password_crypt,
                 'phone' => "000000000000",
                 'role' => 2,
                 'date' => 111111,
@@ -103,41 +104,36 @@ class RegisterController extends Controller
                 'gender' => 0,
             ]);
 
-        return redirect('login')->with('flash_message', 'Done register, please login!');
+            $companies = Companies::all();
+            $id_new = User::latest('created_at')->first();
+            
+            foreach($companies as $company) {
+                $ncom = [
+                    'id' => $company->id,
+                    'user_id' => $id_new->id,
+                    'qr_code_perusahaan' => Str::random(16),
+                    'company_name' => "Customer",
+                    'company_location' => "Customer"
+                ];
+
+                Companies::create($ncom);
+
+            }
+        
+        return redirect('login')->with('status', 'Successfully registered!');
+ 
         } else {
             
-            $get_date_pass = request()->get('date');
-            $pass_date = Carbon::parse($get_date_pass)->format('dmY');
+            $pass_date = Carbon::parse((request()->get('date')))->format('dmY');
             // $date_pass = Carbon::createFromFormat('Y-m-d', request()->get('date'))->format('dmY');
             User::create([
-                // 'name' => $data['name'],
-                // 'email' => $data['email'],
-                // 'nik' => $data['nik'],
-                // 'address' => $data['address'],
-                // 'provinsi' => $data['provinsi'],
-                // 'kabupaten' => $data['kabupaten'],
-                // 'kecamatan' => $data['kecamatan'],
-                // 'postal_code' => $data['postal_code'],
-                // 'phone' => $data['phone'],
-                // 'rekening' => $data['rekening'],
-                // 'rekening_type' => $data['rekening_type'],
-                // // 'gender' => $data['gender'],
-                // 'password' => Hash::make('user123'),
                 'name' => $data['name'],
                 'email' => $data['email'],
                 'qr_code' => Str::random(20),
-                // 'nik' => $data['nik'],
-                // 'address' => $data['address'],
-                // 'provinsi' => $data['provinsi'],
-                // 'kabupaten' => $data['kabupaten'],
-                // 'kecamatan' => $data['kecamatan'],
-                // 'postal_code' => $data['postal_code'],
                 'phone' => $data['phone'],
-                // 'rekening_type' => $data['rekening_type'],
-                // 'rekening' => $data['rekening'],
                 'role' => $data['role'],
                 'date' => $data['date'],
-                'date_string' => Carbon::parse($get_date_pass)->format('dmY'),
+                'date_string' => Carbon::parse(request()->get('date'))->format('dmY'),
                 // 'added_by' => $data['added_by'],
                 'gender' => $data['gender'],
                 'password' => Hash::make($pass_date),
@@ -193,8 +189,6 @@ class RegisterController extends Controller
         // }
 
         // Agen::create($input);
-
-
-        
+        return 0;
     }
 }

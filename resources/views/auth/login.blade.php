@@ -35,9 +35,15 @@
                             <div class="col-lg-6 d-flex justify-content-center"><img src="scmslogo.png" width="120%" alt="Kopti"/></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
+                                    @if (session('status'))
+                                        <div class="alert alert-success">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Login Dashboard ReLog Car Chain</h1>
                                     </div>
+                                    
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
                                         <div class="form-group">
