@@ -32,11 +32,11 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-flex justify-content-center"><img src="scmslogo.png" width="100%" alt="Kopti"/></div>
+                            <div class="col-lg-6 d-flex justify-content-center"><img src="scmslogo.png" width="120%" alt="Kopti"/></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login Dashboard Supply Chain</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Login Dashboard ReLog Car Chain</h1>
                                     </div>
                                     <form method="POST" action="{{ route('login') }}">
                                         @csrf
@@ -126,7 +126,7 @@
                                                 <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                                     <label class="form-check-label" for="remember">
-                                                        {{ __('Ingat saya') }}
+                                                        {{ __('Remember Me') }}
                                             </div>
                                         </div>
                                         <hr>
@@ -134,8 +134,9 @@
                                             {{ __('Masuk') }}
                                         </button>
                                         <br>
-                                        <p style="color:black;">Ingin memberi kritik dan saran? <a href="/helpdesk">Klik disini.</a></p>
-                                        
+                                        <p style="color:black;">Do you want to give feedback? <a href="/helpdesk">Click here</a></p>
+                                        <p style="color:black;">Not yet registered? <a href="{{ url('/registered') }}">Register here</a>
+                                        </p>
                                         {{-- <a href="#" class="btn btn-google btn-user btn-block">
                                             <i class="fab fa-google fa-fw"></i> Login with Google
                                         </a>
@@ -143,12 +144,7 @@
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a> --}}
                                     </form>
-                                    
-                                    <!--@if (Route::has('password.request'))-->
-                                    <!--    <a class="btn btn-link" href="{{ route('password.request') }}">-->
-                                    <!--        {{ __('Forgot Your Password?') }}-->
-                                    <!--    </a>-->
-                                    <!--@endif-->
+
                                     
                                     {{-- @if (Route::has('register'))
                                         <a class="btn btn-link" href="{{ route('register') }}">{{ __('Create an Account') }}</a>

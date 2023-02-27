@@ -46,10 +46,10 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('guest');
+    // }
 
     /**
      * Get a validator for an incoming registration request.
@@ -69,12 +69,12 @@ class RegisterController extends Controller
             // 'kecamatan' => ['required', 'integer'],
             // 'added_by' => ['required', 'string'],
             // 'postal_code' => ['sometimes', 'integer', 'digits_between:4,6'],
-            'phone' => ['required', 'string', 'min:10', 'max:13'],
+            'phone' => ['sometimes', 'string', 'min:10', 'max:13'],
             // 'rekening_type' => ['sometimes', 'integer'],
             // 'rekening' => ['required', 'string'],
-            'gender' => ['required', 'integer'],
-            'role' => ['required', 'integer'],
-            'date' => ['required', 'date'],
+            'gender' => ['sometimes', 'integer'],
+            'role' => ['sometimes', 'integer'],
+            'date' => ['sometimes', 'date'],
             // 'date_string' => ['required', 'string'],
             // 'password' => ['sometimes', 'string', 'min:8', 'confirmed'],
             'avatar' => ['sometimes', 'image', 'mimes:jpg,jpeg,bmp,svg,png', 'max:5000'],
@@ -90,18 +90,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if(request()->has('avatar')){
-            $avataruploaded = request()->file('avatar');
-            $avatarname = time() . '.' . $avataruploaded->getClientOriginalExtension();
-            $avatarpath = public_path('/images/');
-            $avataruploaded->move($avatarpath, $avatarname);
+        if (request()->only('name', 'email', 'password')) {
             User::create([
                 'name' => $data['name'],
                 'email' => $data['email'],
-                'password' => Hash::make('user123'),
-                'avatar' => '/images/' . $avatarname,
+                'qr_code' => Str::random(20),
+                'password' => Hash::make('password'),
+                'phone' => "000000000000",
+                'role' => 2,
+                'date' => 111111,
+                'date_string' => Carbon::parse(000000)->format('dmY'),
+                'gender' => 0,
             ]);
+
+        return redirect('login')->with('flash_message', 'Done register, please login!');
         } else {
+            
             $get_date_pass = request()->get('date');
             $pass_date = Carbon::parse($get_date_pass)->format('dmY');
             // $date_pass = Carbon::createFromFormat('Y-m-d', request()->get('date'))->format('dmY');
@@ -137,27 +141,34 @@ class RegisterController extends Controller
                 // 'added_by' => $data['added_by'],
                 'gender' => $data['gender'],
                 'password' => Hash::make($pass_date),
-                
-                
+            
+            
             ]);
-        }
 
-        $companies = Companies::all();
-        $id_new = User::latest('created_at')->first();
+            $companies = Companies::all();
+            $id_new = User::latest('created_at')->first();
+            
+            foreach($companies as $company) {
+                $ncom = [
+                    'id' => $company->id,
+                    'user_id' => $id_new->id,
+                    'qr_code_perusahaan' => Str::random(16),
+                    'company_name' => $data['company_name'],
+                    'company_location' => $data['company_location'],
+
+                ];
+
+                Companies::create($ncom);
+
+            }
+            return redirect('agen')->with('flash_message', 'Users Added!');
+        }
+        // if (request()->has("role") && request()->input("role") == 2){
+        // } else {
+            
+
+        // }
         
-        foreach($companies as $company) {
-            $ncom = [
-                'id' => $company->id,
-                'user_id' => $id_new->id,
-                'qr_code_perusahaan' => Str::random(16),
-                'company_name' => $data['company_name'],
-                'company_location' => $data['company_location'],
-
-            ];
-
-            Companies::create($ncom);
-
-        }
 
         // Companies::create([
         //     'user_id' => User::create()->id,
@@ -167,21 +178,23 @@ class RegisterController extends Controller
             
         // ]);
 
-        $products = Produk::all();
-        $idBaru = User::latest('created_at')->first();
+        // $products = Produk::all();
+        // $idBaru = User::latest('created_at')->first();
         
-        foreach($products as $product) {
-            $stock = [
-                'produk_id' => $product->id,
-                'user_id' => $idBaru->id,
-                'jumlah_barang' => 0
-            ];
+        // foreach($products as $product) {
+        //     $stock = [
+        //         'produk_id' => $product->id,
+        //         'user_id' => $idBaru->id,
+        //         'jumlah_barang' => 0
+        //     ];
 
 
-            Stock::create($stock);
-        }
+        //     Stock::create($stock);
+        // }
 
         // Agen::create($input);
-        return redirect('agen')->with('flash_message', 'Users Added!');
+
+
+        
     }
 }

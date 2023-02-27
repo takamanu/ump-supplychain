@@ -28,6 +28,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/registered', function () {
+    return view('auth.register');
+});
+
 Route::post('validasi/qr',[\App\Http\Controllers\AgenController::class,'validasiQR'])->name('validasiqr');
 
 // Route::get('/persediaan', [BisnisController::class, 'stock']);

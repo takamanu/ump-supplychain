@@ -1,47 +1,3 @@
-{{-- @extends('layouts.main')
-
-@section('container')
-    <h2>Tambah Produk</h2>
-
-    <div class="col-lg-12">
-        <form method="post" action="/produk">
-            @csrf
-            <div class="mb-3">
-                <label for="nama" class="form-label">Nama Produk</label>
-                <br>
-                <input type="text" class="form-control w-25 @error('nama') is-invalid @enderror" id="nama" name="nama" required value="{{ old('nama') }}">
-                @error('nama')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="harga" class="form-label">Harga</label>
-                <br>
-                <input type="number" class="form-control w-25 @error('harga') is-invalid @enderror"
-                    id="harga" name="harga" required value="{{ old('harga') }}">
-                @error('harga')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <div class="mb-3">
-                <label for="harga_member" class="form-label">Harga Member</label>
-                <br>
-                <input type="number" class="form-control w-25 @error('harga_member') is-invalid @enderror"
-                    id="harga_member" name="harga_member" required value="{{ old('harga_member') }}">
-                @error('harga_member')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
-            <button type="submit" class="btn btn-primary">Tambah Produk</button>
-        </form>
-    </div>
-@endsection --}}
 @extends('layouts.main')
 
 @section('container')
@@ -115,12 +71,117 @@
                         <label for="user" class="form-label">User Info</label>
                         <input type="text" class="form-control" name="user" id="user" value="{{ Auth::user()->name }}" disabled>
                       </div>
+                      <div class="col-md-6">
+                        <label for="company" class="form-label">Company Info</label>
+                        <input type="text" class="form-control" name="company" id="company" value="{{ Auth::user()->companies->company_name }}" disabled>
+                      </div>
                     </div>
 
                     <div class="row mb-3">
                       <div class="col-md-6">
-                        <label for="company" class="form-label">Company Info</label>
-                        <input type="text" class="form-control" name="company" id="company" value="{{ Auth::user()->companies->company_name }}" disabled>
+                        <label for="check_company" class="form-label">Check Company</label>
+                        <div class="input-group">
+                          <input type="text" name="check_company" id="check_company" class="form-control" placeholder="Check Company" aria-label="Check Company" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button">Check</button>
+                          </div>
+                        </div>
+                      </div>
+                      
+                      
+                    </div>
+                    {{-- <div class="row mb-3">
+                      
+                        <div class="col-md-8">
+                          <div class="input-group">
+                            <span class="input-group-text w-25">First and last name</span>
+                          <input type="text" aria-label="First name" class="form-control w-75 w-25">
+                          <input type="text" aria-label="Last name" class="form-control w-75 w-25">
+                        </div>
+                        
+                      </div>
+                    </div> --}}
+                    <br>
+                    <h3 class="mb-3">Components</h3>
+                    <p>NB: All components unit are counted to kg CO2.</p>
+                    
+                    <p><b>Input format: [Value of carbon] [Company ID]</b></p>
+                    <p><b>Input format: [3900] [2]</b></p>
+
+
+
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="prodname" class="form-label">Cylinder</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control w-75" name="cylinder" id="cylinder" required>
+                          <input type="number" class="form-control w-25" name="cylinder_from" id="cylinder_from" placeholder="CID" required>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="prodname" class="form-label">Piston</label>
+                          <div class="input-group">
+                            <input type="number" class="form-control w-75" name="piston" id="piston" required>
+                            <input type="number" class="form-control w-25" name="piston_from" id="piston_from" placeholder="CID" required>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="prodname" class="form-label">Crankshaft</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control w-75" name="crankshaft" id="crankshaft" required>
+                          <input type="number" class="form-control w-25" name="crankshaft_from" id="crankshaft_from" placeholder="CID" required>
+                          
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="prodname" class="form-label">Connecting rod</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control w-75" name="connecting_rod" id="connecting_rod" required>
+                          <input type="number" class="form-control w-25" name="connecting_rod_from" id="connecting_rod_from" placeholder="CID" required>
+                          
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      {{-- <div class="col-md-6">
+                        <label for="prodname" class="form-label">Join our Newsletter</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control w-75" name="join_our_newsletter" id="join_our_newsletter" required>
+                          <input type="number" class="form-control w-25" name="join_our_newsletter_from" id="join_our_newsletter" required>
+                          
+                        </div>
+                      </div> --}}
+                      <div class="col-md-6">
+                        <label for="prodname" class="form-label">Camshaft</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control w-75" name="camshaft" id="camshaft" required>
+                          <input type="number" class="form-control w-25" name="camshaft_from" id="camshaft_from" placeholder="CID" required>
+                          
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="prodname" class="form-label">Cylinder head</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control w-75" name="cylinder_head" id="cylinder_head" required>
+                          <input type="number" class="form-control w-25" name="cylinder_head_from" id="cylinder_head_from" placeholder="CID" required>
+                          
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      
+                      <div class="col-md-6">
+                        <label for="prodname" class="form-label">Valves</label>
+                        <div class="input-group">
+                          <input type="number" class="form-control w-75" name="valves" id="valves" required>
+                          <input type="number" class="form-control w-25" name="valves_from" id="valves_from" placeholder="CID" required>
+                          
+                        </div>
                       </div>
                     </div>
 
@@ -205,6 +266,10 @@
             prodname = $('#prodname').val();
             username = $('#user').val();
             onlyProdname = $('#prodname').val();
+            totalCombustion = parseInt($('#cylinder').val(), 10) + parseInt($('#piston').val(), 10) + parseInt($('#crankshaft').val(), 10) + 
+            parseInt($('#connecting_rod').val(), 10) + parseInt($('#join_our_newsletter').val(), 10) + parseInt($('#cylinder_head').val(), 10) + 
+            parseInt($('#camshaft').val(), 10) + parseInt($('#valves').val(), 10);
+            console.log(totalCombustion);
             // user_id = auth()->user()->id;
             
             prodname=prodname+"<br>Registered By: "+username;
@@ -219,6 +284,7 @@
                   var msg="<h5 style='color: #53D769'><b>Item added successfully!</b></h5><p>Product ID: "+receipt.events.Added.returnValues[0]+"</p>";
                   qr.value = receipt.events.Added.returnValues[0];
                   console.log(receipt.events.Added.returnValues[0]);
+                  contract.methods.addValue(receipt.events.Added.returnValues[0], totalCombustion).send({ from: accounts[0], gas: 1000000 });
                   $.ajax({
                         type: 'POST',
                         url: "{{ route('getProdukName') }}",

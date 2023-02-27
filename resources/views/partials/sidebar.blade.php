@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
         {{-- <img src="/koptiLogo.jpg" width="50px" alt="Logo Kopti"> --}}
-        <div class="sidebar-brand-text mx-1.5">Supply Chain</div>
+        <div class="sidebar-brand-text mx-1.5">ReLog Car Chain v2</div>
     </a>
 
     <!-- Divider -->
@@ -67,15 +67,28 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
+        <a class="nav-link collapsed {{ Request::is('persediaan') || Request::is('persediaan') ? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#collapsePages2"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Components</span>
+        </a>
+        <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item {{ Request::is('persediaan/create') ? 'active' : '' }}" href="/persediaan/create">Add Components</a>
+                <a class="collapse-item {{ Request::is('persediaan') ? 'active' : '' }}" href="/persediaan">Components List</a>
+            </div>
+        </div>
+    </li>
+    <li class="nav-item">
         <a class="nav-link collapsed {{ Request::is('produk') || Request::is('katalog') ? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>
-            <span>Katalog Produk</span>
+            <span>Product</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ Request::is('produk') ? 'active' : '' }}" href="/produk">Produk</a>
-                <a class="collapse-item {{ Request::is('katalog') ? 'active' : '' }}" href="/katalog">Kirim</a>
+                <a class="collapse-item {{ Request::is('produk') ? 'active' : '' }}" href="/produk">Add Product</a>
+                <a class="collapse-item {{ Request::is('katalog') ? 'active' : '' }}" href="/katalog">Send Product</a>
             </div>
         </div>
     </li>
