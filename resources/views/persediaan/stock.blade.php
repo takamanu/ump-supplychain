@@ -76,24 +76,23 @@
                                   <th>No</th>
                                   <th>QR Code</th>
                                   <th>Name</th>
-                                
+                                  <th>Value</th>
                                   <th>Created by</th>
-                                  
                                   <th>Action</th>
                               </tr>
                           </thead>
                           <tbody>
-                          {{-- @foreach($components as $item)
+                          @foreach($stocks as $item)
                               <tr>
                                   <td>{{ $loop->iteration }}</td>
                                   <td><img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{$item->qr_code_produk}}"/></td>
-                                  <td>{{ $item->nama }}</td>
-                              
+                                  <td>{{ $item->components_name }}</td>
+                                  <td>{{ $item->components_value }} kg Co2</td>
                                   <td>{{ $item->user->name}}</td>
 
                                   <td><a href="#" title="View Produk"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a></td>
                               </tr>
-                          @endforeach --}}
+                          @endforeach
                           </tbody>
                       </table>
 

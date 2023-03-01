@@ -57,7 +57,8 @@
               <div class="row g-5">
                 <div class="col">
 
-                  <form id="form1" autocomplete="off">
+                  <form method="POST" action="{{ route('persediaan.store') }}">
+                    @csrf
 
                     <div class="row mb-3">
                       <div class="col-md-6">

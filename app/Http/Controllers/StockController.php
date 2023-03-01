@@ -17,10 +17,10 @@ class StockController extends Controller
     public function index()
     {
         // return auth()->user()->id;
-        $stock = Stock::all()->where('user_id', auth()->user()->id);
+        $stocks = Stock::all();
 
         return view('persediaan.stock', [
-            'stocks' => $stock
+            'stocks' => $stocks
         ]);
     }
 
@@ -40,18 +40,22 @@ class StockController extends Controller
      * @param  \App\Http\Requests\StoreStockRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreStockRequest $request)
+    public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nama' => 'required|max:255|unique:stocks',
-            'harga' => 'required',
-            'harga_member' => '',
-            'stok' => 'required'
+        // $validatedData = $request->validate([
+        //     'nama' => 'required|max:255|unique:stocks',
+        //     'harga' => 'required',
+        //     'harga_member' => '',
+        //     'stok' => 'required'
+        // ]);
+
+        Stock::create([
+            'user_id' => auth()->user()->id, 
+            'components_name' => $request->components_name,
+            'components_value' => $request->components_value,
         ]);
 
-        Stock::create($validatedData);
-
-        return redirect('/persediaan')->with('success', 'Produk berhasil ditambahkan');
+        return redirect('/persediaan')->with('success', 'Komponen berhasil ditambahkan');
     }
 
     /**

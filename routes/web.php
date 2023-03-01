@@ -55,6 +55,8 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/persediaan', ProdukController::class);
     Route::resource('/agen', AgenController::class);
     Route::resource('/persediaan', StockController::class);
+    Route::resource('persediaan', StockController::class);
+    Route::get('/persediaan/create', [StockController::class, 'create']);
     Route::resource('/produk', ProdukController::class);
     Route::get('/katalog', [KatalogController::class, 'index']);
     Route::get('/katalog/create', [KatalogController::class, 'create']);

@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('produk_id');
+            // $table->foreignId('produk_id');
             $table->char('user_id');
-            $table->integer('jumlah_barang');
+            $table->string('prodname');
+            $table->integer('components_value');
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
