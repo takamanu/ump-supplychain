@@ -35,8 +35,13 @@ class ProdukController extends Controller
      */
     public function create()
     {
+        $pilih_komponen = DB::table('stocks')->pluck('components_name');
+        $komponen_value = DB::table('stocks')->pluck('components_value');
+        $komponen = Stock::all();
 
-        return view('produk.create');
+        return view('produk.create', [
+            'komponen' => $komponen
+        ]);
     }
 
     /**
@@ -144,5 +149,16 @@ class ProdukController extends Controller
         // $mahasiswa->save();
 
         
+    }
+
+    public function getvaluekomponen(Request $request){
+        // $id =
+        $hasil_komponen = DB::table('stocks')->where('id', request()->input('id'))->value('components_value');
+        // $hasil_semua = $hasil_komponen + " kg Co2";
+        return $hasil_komponen;
+        // $idd_komponen = Stock::where('id', 'like', "%".$id."%");
+        // foreach($id as $choose){
+        //     echo "$choose->components_value";
+        // }
     }
 }

@@ -108,82 +108,65 @@
                     <p><b>Input format: [Value of carbon] [Company ID]</b></p>
                     <p><b>Input format: [3900] [2]</b></p>
 
-
-
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <label for="prodname" class="form-label">Cylinder</label>
-                        <div class="input-group">
-                          <input type="number" class="form-control w-75" name="cylinder" id="cylinder" required>
-                          <input type="number" class="form-control w-25" name="cylinder_from" id="cylinder_from" placeholder="CID" required>
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="prodname" class="form-label">Piston</label>
+                      <div class="row mb-3 component-row">
+                        <div class="col-md-6">
+                          <label for="select_component" class="form-label">Components</label>
+  
                           <div class="input-group">
-                            <input type="number" class="form-control w-75" name="piston" id="piston" required>
-                            <input type="number" class="form-control w-25" name="piston_from" id="piston_from" placeholder="CID" required>
+                              <select class="form-control @error('component') is-invalid @enderror" name="components" id="select_komponen" aria-describedby="basic-addon2" required>
+                                <option>Choose component</option>
+                              @foreach ($komponen as $pilih)
+                                <option value="{{ $pilih->id }}">{{ $pilih->components_name}}</option>
+                              @endforeach                              
+                            </select>
+                            <span class="input-group-text" id="komponen_value">0 kg Co2</span>
+                          </div>
                         </div>
+                        
+                        {{-- <div class="col-md-6">
+                          <label for="select_component" class="form-label">Components</label>
+  
+                          <div class="input-group">
+                              <select class="form-control @error('component') is-invalid @enderror" name="components" id="select_komponen" aria-describedby="basic-addon2" required>
+                                <option>Choose gender</option>
+                              @foreach ($komponen as $pilih)
+                                <option value="{{ $pilih->id }}">{{ $pilih->components_name}}</option>
+                              @endforeach                              
+                            </select>
+                            <span class="input-group-text" id="komponen_value">0 kg Co2</span>
+                          </div>
+                        </div> 
                       </div>
-                    </div>
 
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <label for="prodname" class="form-label">Crankshaft</label>
-                        <div class="input-group">
-                          <input type="number" class="form-control w-75" name="crankshaft" id="crankshaft" required>
-                          <input type="number" class="form-control w-25" name="crankshaft_from" id="crankshaft_from" placeholder="CID" required>
-                          
+                      <div class="row mb-3 component-row">
+                        <div class="col-md-6">
+                          <label for="select_component" class="form-label">Components</label>
+  
+                          <div class="input-group">
+                              <select class="form-control @error('component') is-invalid @enderror" name="components" id="select_komponen" aria-describedby="basic-addon2" required>
+                                <option>Choose gender</option>
+                              @foreach ($komponen as $pilih)
+                                <option value="{{ $pilih->id }}">{{ $pilih->components_name}}</option>
+                              @endforeach                              
+                            </select>
+                            <span class="input-group-text" id="komponen_value">0 kg Co2</span>
+                          </div>
                         </div>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="prodname" class="form-label">Connecting rod</label>
-                        <div class="input-group">
-                          <input type="number" class="form-control w-75" name="connecting_rod" id="connecting_rod" required>
-                          <input type="number" class="form-control w-25" name="connecting_rod_from" id="connecting_rod_from" placeholder="CID" required>
-                          
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      {{-- <div class="col-md-6">
-                        <label for="prodname" class="form-label">Join our Newsletter</label>
-                        <div class="input-group">
-                          <input type="number" class="form-control w-75" name="join_our_newsletter" id="join_our_newsletter" required>
-                          <input type="number" class="form-control w-25" name="join_our_newsletter_from" id="join_our_newsletter" required>
-                          
-                        </div>
+                        
+                        <div class="col-md-6">
+                          <label for="select_component" class="form-label">Components</label>
+  
+                          <div class="input-group">
+                              <select class="form-control @error('component') is-invalid @enderror" name="components" id="select_komponen" aria-describedby="basic-addon2" required>
+                                <option>Choose gender</option>
+                              @foreach ($komponen as $pilih)
+                                <option value="{{ $pilih->id }}">{{ $pilih->components_name}}</option>
+                              @endforeach                              
+                            </select>
+                            <span class="input-group-text" id="komponen_value">0 kg Co2</span>
+                          </div>
+                        </div> 
                       </div> --}}
-                      <div class="col-md-6">
-                        <label for="prodname" class="form-label">Camshaft</label>
-                        <div class="input-group">
-                          <input type="number" class="form-control w-75" name="camshaft" id="camshaft" required>
-                          <input type="number" class="form-control w-25" name="camshaft_from" id="camshaft_from" placeholder="CID" required>
-                          
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="prodname" class="form-label">Cylinder head</label>
-                        <div class="input-group">
-                          <input type="number" class="form-control w-75" name="cylinder_head" id="cylinder_head" required>
-                          <input type="number" class="form-control w-25" name="cylinder_head_from" id="cylinder_head_from" placeholder="CID" required>
-                          
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      
-                      <div class="col-md-6">
-                        <label for="prodname" class="form-label">Valves</label>
-                        <div class="input-group">
-                          <input type="number" class="form-control w-75" name="valves" id="valves" required>
-                          <input type="number" class="form-control w-25" name="valves_from" id="valves_from" placeholder="CID" required>
-                          
-                        </div>
-                      </div>
-                    </div>
 
                     <div class="row mb-3">
                       <div class="col-md-6 d-flex">
@@ -237,6 +220,30 @@
 
     
   <!-- Web3 Injection -->
+  {{-- <script>
+    // Find the button and select element
+  const addComponentBtn = document.getElementById('add-component-btn');
+  const selectKomponen = document.getElementById('select_komponen');
+
+  // Add a click event listener to the button
+  addComponentBtn.addEventListener('click', function() {
+    // Clone the component row and select element
+    const componentRow = document.querySelector('.component-row');
+    const newComponentRow = componentRow.cloneNode(true);
+    const newSelectKomponen = newComponentRow.querySelector('#select_komponen');
+
+    // Reset the cloned select element's value and set a unique ID
+    newSelectKomponen.selectedIndex = 0;
+    const newId = `select_komponen_${Date.now()}`;
+    newSelectKomponen.id = newId;
+    newComponentRow.querySelector('label').setAttribute('for', newId);
+
+    // Append the cloned component row and select element to the wrapper
+    const componentsWrapper = document.getElementById('components-wrapper');
+    componentsWrapper.insertBefore(newComponentRow, addComponentBtn);
+  });
+
+  </script> --}}
     <script>
 
         $("#closeModal").on("click", function(){
@@ -372,5 +379,58 @@
       });
 
     </script>
+
+    <script>
+      $(function(){
+          $.ajaxSetup({
+              headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+          });
+  
+          $(function(){
+              $('#select_komponen').on('change', function(){
+                  let id = $('#select_komponen').val();
+  
+                  $.ajax({
+                      type: 'POST',
+                      url: "{{ route('getvaluekomponen') }}",
+                      data: {id:id},
+                      cache: false,
+  
+                      success: function(msg){
+                          msg = msg + " kg Co2";
+                          $('#komponen_value').html(msg);
+                          // $('#kecamatan').html(msg).prepend('<option selected>Pilih salah satu</option>');
+  
+                      },
+                      error: function(data){
+                          console.log('error:', data)
+                      },
+                  })
+              })
+  
+              $('#kabupaten').on('change', function(){
+                  let id_kabupaten = $('#kabupaten').val();
+  
+                  $.ajax({
+                      type: 'POST',
+                      url: "{{ route('getkecamatan') }}",
+                      data: {id_kabupaten:id_kabupaten},
+                      cache: false,
+  
+                      success: function(msg){
+                          $('#kecamatan').html(msg).prepend('<option selected>Pilih salah satu</option>');
+                          
+                          
+                      },
+                      error: function(data){
+                          console.log('error:', data)
+                      },
+                  })
+              })
+  
+          })
+      });
+      
+  </script>
 </body>
 @stop

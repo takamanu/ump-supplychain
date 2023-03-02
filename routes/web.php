@@ -58,6 +58,7 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('persediaan', StockController::class);
     Route::get('/persediaan/create', [StockController::class, 'create']);
     Route::resource('/produk', ProdukController::class);
+    Route::post('getvaluekomponen', [ProdukController::class, 'getvaluekomponen'])->name('getvaluekomponen');
     Route::get('/katalog', [KatalogController::class, 'index']);
     Route::get('/katalog/create', [KatalogController::class, 'create']);
     Route::resource('/register', RegistersUsers::class);
