@@ -121,7 +121,39 @@ class RegisterController extends Controller
             }
         
         return redirect('login')->with('status', 'Successfully registered!');
- 
+
+        } else if (request()->only('name', 'email', 'company_name', 'company_location', 'password', 'role')){
+            $password_crypt = Hash::make((request()->input('password')));
+            User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'qr_code' => Str::random(20),
+                'password' => $password_crypt,
+                'phone' => "000000000000",
+                'role' => $data['role'],
+                'date' => 111111,
+                'date_string' => Carbon::parse(000000)->format('dmY'),
+                'gender' => 0,
+            ]);
+
+            $companies = Companies::all();
+            $id_new = User::latest('created_at')->first();
+            
+            foreach($companies as $company) {
+                $ncom = [
+                    'id' => $company->id,
+                    'user_id' => $id_new->id,
+                    'qr_code_perusahaan' => Str::random(16),
+                    'company_name' => $data['company_name'],
+                    'company_location' => $data['company_location'],
+                ];
+
+                Companies::create($ncom);
+
+            }
+
+            return redirect('login')->with('status', 'Successfully registered!');
+            
         } else {
             
             $pass_date = Carbon::parse((request()->get('date')))->format('dmY');

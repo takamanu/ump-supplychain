@@ -77,7 +77,7 @@
                       </div>
                     </div>
 
-                    <div class="row mb-3">
+                    {{-- <div class="row mb-3">
                       <div class="col-md-6">
                         <label for="check_company" class="form-label">Check Company</label>
                         <div class="input-group">
@@ -87,9 +87,30 @@
                           </div>
                         </div>
                       </div>
-                      
-                      
-                    </div>
+                    </div> --}}
+
+                    {{-- <div class="row-mb-3">
+                      <table>
+                        <tr>
+                          <th>Product Name</th>
+                          <th><select class="form-control @error('component') is-invalid @enderror" name="components" id="select_komponen" aria-describedby="basic-addon2" required>
+                            <option>Choose component</option>
+                          @foreach ($komponen as $pilih)
+                            <option value="{{ $pilih->id }}">{{ $pilih->components_name}}</option>
+                          @endforeach                              
+                        </select>
+                      </th>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                        <tr>
+                          <td></td>
+                          <td></td>
+                        </tr>
+                      </table>
+                    </div> --}}
                     {{-- <div class="row mb-3">
                       
                         <div class="col-md-8">
@@ -104,24 +125,89 @@
                     <br>
                     <h3 class="mb-3">Components</h3>
                     <p>NB: All components unit are counted to kg CO2.</p>
-                    
-                    <p><b>Input format: [Value of carbon] [Company ID]</b></p>
-                    <p><b>Input format: [3900] [2]</b></p>
 
-                      <div class="row mb-3 component-row">
-                        <div class="col-md-6">
-                          <label for="select_component" class="form-label">Components</label>
+                      <div class="row mb-3 component-row" id="component-container">
+                        <div class="col-md-6 this-one">
+                          <label for="select_component" class="form-label">Component *required</label>
   
                           <div class="input-group">
-                              <select class="form-control @error('component') is-invalid @enderror" name="components" id="select_komponen" aria-describedby="basic-addon2" required>
-                                <option>Choose component</option>
+                            <select class="form-control select-komponen @error('component') is-invalid @enderror" name="components" id="select_komponen" aria-describedby="basic-addon2" required>  
+                            <option>Choose component</option>
                               @foreach ($komponen as $pilih)
-                                <option value="{{ $pilih->id }}">{{ $pilih->components_name}}</option>
+                                <option value="{{ $pilih->id }}"><b>{{ $pilih->components_name}}</b> (by <b>{{ $pilih->user->name}}</b> from <b>{{ $pilih->user->companies->company_name}})</b></option>
                               @endforeach                              
                             </select>
                             <span class="input-group-text" id="komponen_value">0 kg Co2</span>
                           </div>
                         </div>
+                        {{-- <button type="button" class="btn btn-primary" id="tambah_table">Click me</button> --}}
+
+                        <div class="col-md-6 this-one">
+                          <label for="select_component2" class="form-label">Component 2</label>
+  
+                          <div class="input-group">
+                            <select class="form-control select-komponen2 @error('component') is-invalid @enderror" name="components2" id="select_komponen2" aria-describedby="basic-addon2">  
+                            <option>Choose component</option>
+                              @foreach ($komponen as $pilih)
+                                <option value="{{ $pilih->id }}"><b>{{ $pilih->components_name}}</b> (by <b>{{ $pilih->user->name}}</b> from <b>{{ $pilih->user->companies->company_name}})</b></option>
+                              @endforeach                              
+                            </select>
+                            <span class="input-group-text" id="komponen_value2">0 kg Co2</span>
+                          </div>
+                        </div>
+                        {{-- <button type="button" class="btn btn-primary" id="tambah_table">Click me</button> --}}
+                      </div>
+
+                      <div class="row mb-3 component-row" id="component-container">
+                        <div class="col-md-6 this-one">
+                          <label for="select_component3" class="form-label">Component 3</label>
+  
+                          <div class="input-group">
+                            <select class="form-control select-komponen3 @error('component') is-invalid @enderror" name="components3" id="select_komponen3" aria-describedby="basic-addon2">  
+                            <option>Choose component</option>
+                              @foreach ($komponen as $pilih)
+                                <option value="{{ $pilih->id }}"><b>{{ $pilih->components_name}}</b> (by <b>{{ $pilih->user->name}}</b> from <b>{{ $pilih->user->companies->company_name}})</b></option>
+                              @endforeach                              
+                            </select>
+                            <span class="input-group-text" id="komponen_value3">0 kg Co2</span>
+                          </div>
+                        </div>
+                        {{-- <button type="button" class="btn btn-primary" id="tambah_table">Click me</button> --}}
+
+                        <div class="col-md-6 this-one">
+                          <label for="select_component4" class="form-label">Component 4</label>
+  
+                          <div class="input-group">
+                            <select class="form-control select-komponen4 @error('component') is-invalid @enderror" name="components" id="select_komponen4" aria-describedby="basic-addon2">  
+                            <option>Choose component</option>
+                              @foreach ($komponen as $pilih)
+                                <option value="{{ $pilih->id }}"><b>{{ $pilih->components_name}}</b> (by <b>{{ $pilih->user->name}}</b> from <b>{{ $pilih->user->companies->company_name}})</b></option>
+                              @endforeach                              
+                            </select>
+                            <span class="input-group-text" id="komponen_value4">0 kg Co2</span>
+                          </div>
+                        </div>
+                        {{-- <button type="button" class="btn btn-primary" id="tambah_table">Click me</button> --}}
+                      </div>
+
+                      <div class="row mb-3 component-row" id="component-container">
+                        <div class="col-md-6 this-one">
+                          <label for="select_component5" class="form-label">Component 5</label>
+  
+                          <div class="input-group">
+                            <select class="form-control select-komponen @error('component') is-invalid @enderror" name="components5" id="select_komponen5" aria-describedby="basic-addon2">  
+                            <option>Choose component</option>
+                              @foreach ($komponen as $pilih)
+                                <option value="{{ $pilih->id }}"><b>{{ $pilih->components_name}}</b> (by <b>{{ $pilih->user->name}}</b> from <b>{{ $pilih->user->companies->company_name}})</b></option>
+                              @endforeach                              
+                            </select>
+                            <span class="input-group-text" id="komponen_value5">0 kg Co2</span>
+                          </div>
+                        </div>
+                        {{-- <button type="button" class="btn btn-primary" id="tambah_table">Click me</button> --}}
+                      </div>
+
+
                         
                         {{-- <div class="col-md-6">
                           <label for="select_component" class="form-label">Components</label>
@@ -220,31 +306,152 @@
 
     
   <!-- Web3 Injection -->
-  {{-- <script>
-    // Find the button and select element
-  const addComponentBtn = document.getElementById('add-component-btn');
-  const selectKomponen = document.getElementById('select_komponen');
+  <script>
+    var valueKomponen = 0;
+    var valueKomponenDua = 0;
+    var valueKomponenTiga = 0;
+    var valueKomponenEmpat = 0;
+    var valueKomponenLima = 0;
 
-  // Add a click event listener to the button
-  addComponentBtn.addEventListener('click', function() {
-    // Clone the component row and select element
-    const componentRow = document.querySelector('.component-row');
-    const newComponentRow = componentRow.cloneNode(true);
-    const newSelectKomponen = newComponentRow.querySelector('#select_komponen');
+  $(function(){
+    $.ajaxSetup({
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+    });
+  
+    $(document).ready(function(){
+        $('#select_komponen').on('change', function(){
+            let id = $('#select_komponen').val();
+            console.log(id);
+  
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('getvaluekomponen') }}",
+                data: {id:id},
+                cache: false,
+  
+                success: function(msg){
+                    valueKomponen = msg;
+                    console.log(valueKomponen);
+                    msg = msg + " kg Co2";
+                    $('#komponen_value').html(msg);
+                },
+                error: function(data){
+                    console.log('error:', data)
+                },
+            })
+        })
 
-    // Reset the cloned select element's value and set a unique ID
-    newSelectKomponen.selectedIndex = 0;
-    const newId = `select_komponen_${Date.now()}`;
-    newSelectKomponen.id = newId;
-    newComponentRow.querySelector('label').setAttribute('for', newId);
+        $('#select_komponen2').on('change', function(){
+          let id = $('#select_komponen2').val();
+          console.log("Trigger this");
+          $.ajax({
+            type: 'POST',
+            url: "{{ route('getvaluekomponen') }}",
+            data: {id:id},
+            cache: false,
+            success: function(msg){
+              valueKomponenDua = msg;
+              msg = msg + " kg Co2";
+              $('#komponen_value2').html(msg);
+            },
+            error: function(data){
+              console.log('error:', data)
+            },
+          })
+        })
 
-    // Append the cloned component row and select element to the wrapper
-    const componentsWrapper = document.getElementById('components-wrapper');
-    componentsWrapper.insertBefore(newComponentRow, addComponentBtn);
+        $('#select_komponen3').on('change', function(){
+            let id = $('#select_komponen3').val();
+  
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('getvaluekomponen') }}",
+                data: {id:id},
+                cache: false,
+  
+                success: function(msg){
+                  valueKomponenTiga = msg;
+                  msg = msg + " kg Co2";
+                  $('#komponen_value3').html(msg);
+                },
+                error: function(data){
+                    console.log('error:', data)
+                },
+            })
+        })
+
+        $('#select_komponen4').on('change', function(){
+            let id = $('#select_komponen4').val();
+              
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('getvaluekomponen') }}",
+                data: {id:id},
+                cache: false,
+  
+                success: function(msg){
+                  valueKomponenEmpat = msg;
+                  
+                  msg = msg + " kg Co2";
+                  $('#komponen_value4').html(msg);
+                },
+                error: function(data){
+                    console.log('error:', data)
+                },
+            })
+        })
+
+        $('#select_komponen5').on('change', function(){
+            let id = $('#select_komponen5').val();
+  
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('getvaluekomponen') }}",
+                data: {id:id},
+                cache: false,
+  
+                success: function(msg){
+                  valueKomponenLima = msg;
+
+                  msg = msg + " kg Co2";
+                  $('#komponen_value5').html(msg);
+                },
+                error: function(data){
+                    console.log('error:', data)
+                },
+            })
+        })
+
+  
+        $('#tambah_table').on('click', function(){
+            const container = $('#component-container');
+            const newComponent = $('.col-md-6.this-one').first().clone();
+  
+            newComponent.find('select').attr({
+              name: 'components',
+              id: 'select_komponen' + container.children().length,
+              'aria-describedby': 'basic-addon2',
+              required: true
+            });
+  
+            newComponent.find('option').not(':first').remove();
+  
+            @foreach ($komponen as $pilih)
+              newComponent.find('select').append('<option value="{{ $pilih->id }}">{{ $pilih->components_name}}</option>');
+            @endforeach
+
+            newComponent.find('span').attr({
+              id:'komponen_value' + container.children().length,
+
+            });
+  
+            container.append(newComponent);
+        })
+    })
   });
-
-  </script> --}}
+</script>  
     <script>
+
 
         $("#closeModal").on("click", function(){
           $('#showModal').modal('hide');
@@ -273,9 +480,8 @@
             prodname = $('#prodname').val();
             username = $('#user').val();
             onlyProdname = $('#prodname').val();
-            totalCombustion = parseInt($('#cylinder').val(), 10) + parseInt($('#piston').val(), 10) + parseInt($('#crankshaft').val(), 10) + 
-            parseInt($('#connecting_rod').val(), 10) + parseInt($('#join_our_newsletter').val(), 10) + parseInt($('#cylinder_head').val(), 10) + 
-            parseInt($('#camshaft').val(), 10) + parseInt($('#valves').val(), 10);
+
+            totalCombustion = parseInt(valueKomponen, 10) + parseInt(valueKomponenDua, 10) + parseInt(valueKomponenTiga, 10) + parseInt(valueKomponenEmpat, 10) + parseInt(valueKomponenLima, 10);
             console.log(totalCombustion);
             // user_id = auth()->user()->id;
             
@@ -380,57 +586,5 @@
 
     </script>
 
-    <script>
-      $(function(){
-          $.ajaxSetup({
-              headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-          });
-  
-          $(function(){
-              $('#select_komponen').on('change', function(){
-                  let id = $('#select_komponen').val();
-  
-                  $.ajax({
-                      type: 'POST',
-                      url: "{{ route('getvaluekomponen') }}",
-                      data: {id:id},
-                      cache: false,
-  
-                      success: function(msg){
-                          msg = msg + " kg Co2";
-                          $('#komponen_value').html(msg);
-                          // $('#kecamatan').html(msg).prepend('<option selected>Pilih salah satu</option>');
-  
-                      },
-                      error: function(data){
-                          console.log('error:', data)
-                      },
-                  })
-              })
-  
-              $('#kabupaten').on('change', function(){
-                  let id_kabupaten = $('#kabupaten').val();
-  
-                  $.ajax({
-                      type: 'POST',
-                      url: "{{ route('getkecamatan') }}",
-                      data: {id_kabupaten:id_kabupaten},
-                      cache: false,
-  
-                      success: function(msg){
-                          $('#kecamatan').html(msg).prepend('<option selected>Pilih salah satu</option>');
-                          
-                          
-                      },
-                      error: function(data){
-                          console.log('error:', data)
-                      },
-                  })
-              })
-  
-          })
-      });
-      
-  </script>
 </body>
 @stop

@@ -17,6 +17,7 @@ class StockController extends Controller
     public function index()
     {
         // return auth()->user()->id;
+
         $stocks = Stock::all();
 
         return view('persediaan.stock', [

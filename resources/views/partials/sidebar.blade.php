@@ -88,7 +88,7 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item {{ Request::is('produk') ? 'active' : '' }}" href="/produk">Add Product</a>
-                <a class="collapse-item {{ Request::is('katalog') ? 'active' : '' }}" href="/katalog">Send Product</a>
+                <a class="collapse-item {{ Request::is('katalog/create') ? 'active' : '' }}" href="/katalog/create">Send Product</a>
             </div>
         </div>
     </li>

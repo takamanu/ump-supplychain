@@ -16,16 +16,24 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $cari = $request->query('cari');
         $dataproduk = Produk::all();
-        // $produk = Produk::where('id', '1')->first();
-        // return $produk->user->name;
 
-        return view('produk.produk')->with([
-            'products' => $dataproduk,
-            
-        ]);
+        if(!empty($cari)){
+            $dataproduk = Produk::where('nama',request()->input('cari'))->get();
+            return view('produk.produk')->with([
+                'products' => $dataproduk,
+                'cari' => $cari,
+            ]);
+        } else {
+            $dataproduk = Produk::all();
+            return view('produk.produk')->with([
+                'products' => $dataproduk,
+                'cari' => $cari,
+            ]);
+        }
     }
 
     /**
@@ -152,13 +160,9 @@ class ProdukController extends Controller
     }
 
     public function getvaluekomponen(Request $request){
-        // $id =
+        $biarkepakeaja = DB::table('stocks')->where('id', $request->id)->value('components_value');
+        echo $biarkepakeaja;
         $hasil_komponen = DB::table('stocks')->where('id', request()->input('id'))->value('components_value');
-        // $hasil_semua = $hasil_komponen + " kg Co2";
         return $hasil_komponen;
-        // $idd_komponen = Stock::where('id', 'like', "%".$id."%");
-        // foreach($id as $choose){
-        //     echo "$choose->components_value";
-        // }
     }
 }

@@ -96,9 +96,9 @@
                                                             </span>
                                                         @enderror
                                                     </div>
-                                                    <div class="col-sm-6">
+                                                    {{-- <div class="col-sm-6">
                                                         <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col d-flex justify-content-start">
@@ -145,6 +145,17 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-6 mb-3 mb-sm-0">
+                                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
+                
+                                                        @error('password')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6 mb-3 mb-sm-0">
                                                         <input id="company_name" type="text" class="form-control @error('company_name') is-invalid @enderror" name="company_name" value="{{ old('company_name') }}" placeholder="Company Name" required autocomplete="company_name" autofocus>
                                             
                                                         @error('company_name')
@@ -174,18 +185,16 @@
                                                 </div>
                                                 <div class="form-group row">
                                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password" placeholder="Password">
-                
-                                                        @error('password')
+                                                        <input id="company_location" type="text" class="form-control @error('company_location') is-invalid @enderror" name="company_location" value="{{ old('company_location') }}" placeholder="Company location" required autocomplete="company_location" autofocus>
+                                            
+                                                        @error('company_location')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>
                                                         @enderror
                                                     </div>
-                                                    <div class="col-sm-6">
-                                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" placeholder="Confirm Password">
-                                                    </div>
                                                 </div>
+                                                
                                                 <div class="form-group row">
                                                     <div class="col d-flex justify-content-start">
                                                         <button type="submit" class="btn btn-primary">
