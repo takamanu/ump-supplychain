@@ -47,6 +47,7 @@
             <i class="fas fa-fw fa-wrench"></i>
             <span>Staff</span>
         </a>
+        @if(Auth::user()->role =='0')
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
@@ -55,6 +56,24 @@
                 <a class="collapse-item {{ Request::is('agen') or Request::is('agen/[1-99999]')  ? 'active' : '' }}" href="/agen">Staff List</a>
             </div>
         </div>
+        @elseif(Auth::user()->role =='1')
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                {{-- <h6 class="collapse-header">Fitur Keagenan:</h6> --}}
+                <a class="collapse-item {{ Request::is('agen/create') ? 'active' : '' }}" href="{{ url('/agen/create') }}">Add Staff</a>
+                <a class="collapse-item {{ Request::is('agen') or Request::is('agen/[1-99999]')  ? 'active' : '' }}" href="/agen">Staff List</a>
+            </div>
+        </div>
+        @else
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+            data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                {{-- <h6 class="collapse-header">Fitur Keagenan:</h6> --}}
+                <a class="collapse-item" href="{{ url('#') }}">No Access</a>
+            </div>
+        </div>
+        @endif
     </li>
 
     <!-- Divider -->
@@ -72,12 +91,21 @@
             <i class="fas fa-fw fa-folder"></i>
             <span>Components</span>
         </a>
+        
         <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
+            @if(Auth::user()->role =='0')
                 <a class="collapse-item {{ Request::is('persediaan/create') ? 'active' : '' }}" href="/persediaan/create">Add Components</a>
                 <a class="collapse-item {{ Request::is('persediaan') ? 'active' : '' }}" href="/persediaan">Components List</a>
+            @elseif(Auth::user()->role =='1')
+                <a class="collapse-item {{ Request::is('persediaan/create') ? 'active' : '' }}" href="/persediaan/create">Add Components</a>
+                <a class="collapse-item {{ Request::is('persediaan') ? 'active' : '' }}" href="/persediaan">Components List</a>
+            @else
+                <a class="collapse-item" href="{{ url('#') }}">No Access</a>
+            @endif
             </div>
         </div>
+       
     </li>
     <li class="nav-item">
         <a class="nav-link collapsed {{ Request::is('produk') || Request::is('katalog') ? 'active' : '' }}" href="#" data-toggle="collapse" data-target="#collapsePages"
@@ -87,8 +115,18 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item {{ Request::is('produk') ? 'active' : '' }}" href="/produk">Add Product</a>
+            @if(Auth::user()->role =='0')
+                <a class="collapse-item {{ Request::is('produk') ? 'active' : '' }}" href="/produk">List Product</a>
+                <a class="collapse-item {{ Request::is('produk/create') ? 'active' : '' }}" href="/produk">Add Product</a>
                 <a class="collapse-item {{ Request::is('katalog/create') ? 'active' : '' }}" href="/katalog/create">Send Product</a>
+            @elseif(Auth::user()->role =='1')
+                <a class="collapse-item {{ Request::is('produk') ? 'active' : '' }}" href="/produk">List Product</a>
+                <a class="collapse-item {{ Request::is('produk/create') ? 'active' : '' }}" href="/produk">Add Product</a>
+                <a class="collapse-item {{ Request::is('katalog/create') ? 'active' : '' }}" href="/katalog/create">Send Product</a>
+            @else
+                <a class="collapse-item {{ Request::is('produk') ? 'active' : '' }}" href="/produk">List Product</a>
+            @endif
+                
             </div>
         </div>
     </li>

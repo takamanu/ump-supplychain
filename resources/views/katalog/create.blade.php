@@ -7,11 +7,27 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <script defer src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBQobWPf8WyglvONc2lYAzIwUNqQsVPnYk" type="text/javascript"></script>
+    <script src="map.js"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <style type="text/css">
+      a:hover{
+      cursor: pointer;
+      text-decoration: unset;
+      }
+
+      .heading_anchor{
+         background: #8142b1 !important; 
+         color: #fff !important;
+      }
+
+      .define_height{
+          height: 450px;
+      }
+   </style>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     {{-- <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -56,7 +72,54 @@
             <main>
               <div class="row g-5">
                 <div class="col">
-
+                  <div class='container-fluid'>
+                     <div class='container-fluid'>
+                        <div class='row'>
+                           <div class='col-md-4'>
+                              <p>Enter your origin point and your destination where you want to go.</p>
+                              <div class='well define_height'>
+                                 <form id="distance_form">
+                                    <div class="form-group">
+                                       <label>Enter Origin</label>
+                                       <input class="form-control" id="from_places" placeholder="Enter Origin"/>
+                                       <input id="origin" name="origin" required="" type="hidden"/>
+                                       <a onclick="getCurrentPosition()">Set Current Location</a>
+                                    </div>
+                                    <div class="form-group">
+                                       <label>Enter Destination</label>
+                                       <input class="form-control" id="to_places" placeholder="Enter Destination"/>
+                                       <input id="destination" name="destination" required="" type="hidden"/>
+                                    </div>
+                                    <div class="form-group">
+                                       <label>Travel Mode</label>
+                                       <select class="form-control" id="travel_mode" name="travel_mode">
+                                          <option value="DRIVING">Driving</option>
+                                          <option value="WALKING">Walking</option>
+                                          <option value="TRANSIT">Transit</option>
+                                       </select>
+                                    </div>
+                                    <input class="btn btn-primary" type="submit" value="Find" style="background: #8142b1; width: 100%; border: 0px;" />
+                                 </form>
+                                 <div class="row" style="padding-top: 20px;">
+                                    <div class="container">
+                                       <p id="in_mile"></p>
+                                       <p id="in_kilo"></p>
+                                       <p id="duration_text"></p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class='col-md-8'>
+                              <noscript>
+                                 <div class='alert alert-info'>
+                                    <h4>Your JavaScript is disabled</h4>
+                                    <p>Please enable JavaScript to view the map.</p>
+                                 </div>
+                              </noscript>
+                              <div id="map" style="height: 500px; width: 100%" ></div>
+                           </div>
+                        </div>
+                     </div>
                   <form id="form2" autocomplete="off">
 
                     <div class="row mb-3">
@@ -66,21 +129,9 @@
                       </div>
                       <div class="col-md-4">
                         <label for="prodlocation" class="form-label">Distance (km)</label>
-                        <input type="text" class="form-control" name="prodlocation" id="prodlocation">
+                        <input type="text" class="form-control" name="prodlocation" id="prodlocation" disabled>
                     </div>
                     </div>
-                    <h2 class="mb-3">Send Product (Coming soon)</h2>
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <label for="prodlocation_from" class="form-label">From</label>
-                            <input type="text" class="form-control" name="prodlocation_from" id="prodlocation_from" disabled>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="prodlocation_to" class="form-label">Where to?</label>
-                            <input type="text" class="form-control" name="prodlocation_to" id="prodlocation_to" disabled>
-                        </div>
-                    </div>
-
 
                     <div class="row mb-3">
                       <div class="col-md-6">
@@ -143,7 +194,153 @@
 <script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
 
 <script src="/assets/js/app.js"></script>
-    
+    <script>
+      $(function () {
+        var origin, destination, map;
+
+        // add input listeners
+        google.maps.event.addDomListener(window, 'load', function (listener) {
+            setDestination();
+            initMap();
+        });
+
+        // init or load map
+        function initMap() {
+
+            var myLatLng = {
+                lat: 20.5937,
+                lng: 78.9629
+            };
+            map = new google.maps.Map(document.getElementById('map'), {zoom: 16, center: myLatLng,});
+        }
+
+        function setDestination() {
+            var from_places = new google.maps.places.Autocomplete(document.getElementById('from_places'));
+            var to_places = new google.maps.places.Autocomplete(document.getElementById('to_places'));
+
+            google.maps.event.addListener(from_places, 'place_changed', function () {
+                var from_place = from_places.getPlace();
+                var from_address = from_place.formatted_address;
+                $('#origin').val(from_address);
+            });
+
+            google.maps.event.addListener(to_places, 'place_changed', function () {
+                var to_place = to_places.getPlace();
+                var to_address = to_place.formatted_address;
+                $('#destination').val(to_address);
+            });
+
+
+        }
+
+        function displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay) {
+            directionsService.route({
+                origin: origin,
+                destination: destination,
+                travelMode: travel_mode,
+                avoidTolls: true
+            }, function (response, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setMap(map);
+                    directionsDisplay.setDirections(response);
+                } else {
+                    directionsDisplay.setMap(null);
+                    directionsDisplay.setDirections(null);
+                    alert('Could not display directions due to: ' + status);
+                }
+            });
+        }
+
+        // calculate distance , after finish send result to callback function
+        function calculateDistance(travel_mode, origin, destination) {
+
+            var DistanceMatrixService = new google.maps.DistanceMatrixService();
+            DistanceMatrixService.getDistanceMatrix(
+                {
+                    origins: [origin],
+                    destinations: [destination],
+                    travelMode: google.maps.TravelMode[travel_mode],
+                    unitSystem: google.maps.UnitSystem.IMPERIAL, // miles and feet.
+                    // unitSystem: google.maps.UnitSystem.metric, // kilometers and meters.
+                    avoidHighways: false,
+                    avoidTolls: false
+                }, save_results);
+        }
+
+        // save distance results
+        function save_results(response, status) {
+
+            if (status != google.maps.DistanceMatrixStatus.OK) {
+                $('#result').html(err);
+            } else {
+                var origin = response.originAddresses[0];
+                var destination = response.destinationAddresses[0];
+                if (response.rows[0].elements[0].status === "ZERO_RESULTS") {
+                    $('#result').html("Sorry , not available to use this travel mode between " + origin + " and " + destination);
+                } else {
+                    var distance = response.rows[0].elements[0].distance;
+                    var duration = response.rows[0].elements[0].duration;
+                    var distance_in_kilo = distance.value / 1000; // the kilo meter
+                    var distance_in_mile = distance.value / 1609.34; // the mile
+                    var duration_text = duration.text;
+                    appendResults(distance_in_kilo, distance_in_mile, duration_text);
+                    sendAjaxRequest(origin, destination, distance_in_kilo, distance_in_mile, duration_text);
+                }
+            }
+        }
+
+        // append html results
+        function appendResults(distance_in_kilo, distance_in_mile, duration_text) {
+            $("#result").removeClass("hide");
+            $('#in_mile').html(" Distance in Mile: <span class='badge badge-pill badge-secondary'>" + distance_in_mile.toFixed(2) + "</span>");
+            $('#in_kilo').html("Distance in KM: <span class='badge badge-pill badge-secondary'>" + distance_in_kilo.toFixed(2) + "</span>");
+            $('#duration_text').html("Duration: <span class='badge badge-pill badge-success'>" + duration_text + "</span>");
+            distanceFix = parseInt((distance_in_kilo.toFixed(2)), 10)
+            $('#prodlocation').val(distanceFix);
+        }
+
+        // send ajax request to save results in the database
+        
+
+        // on submit  display route ,append results and send calculateDistance to ajax request
+        $('#distance_form').submit(function (e) {
+            e.preventDefault();
+            var origin = $('#origin').val();
+            var destination = $('#destination').val();
+            var travel_mode = $('#travel_mode').val();
+            var directionsDisplay = new google.maps.DirectionsRenderer({'draggable': false});
+            var directionsService = new google.maps.DirectionsService();
+           displayRoute(travel_mode, origin, destination, directionsService, directionsDisplay);
+            calculateDistance(travel_mode, origin, destination);
+        });
+
+    });
+
+    // get current Position
+    function getCurrentPosition() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(setCurrentPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.")
+        }
+    }
+
+    // get formatted address based on current position and set it to input
+    function setCurrentPosition(pos) {
+        var geocoder = new google.maps.Geocoder();
+        var latlng = {lat: parseFloat(pos.coords.latitude), lng: parseFloat(pos.coords.longitude)};
+        geocoder.geocode({ 'location' :latlng  }, function (responses) {
+            console.log(responses);
+            if (responses && responses.length > 0) {
+                $("#origin").val(responses[1].formatted_address);
+                $("#from_places").val(responses[1].formatted_address);
+                //    console.log(responses[1].formatted_address);
+            } else {
+                alert("Cannot determine address at this location.")
+            }
+        });
+    }
+    </script>
     <script>
     // Initialize Web3
     if (typeof web3 !== 'undefined') {

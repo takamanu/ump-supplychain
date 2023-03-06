@@ -333,6 +333,7 @@
                     valueKomponen = msg;
                     console.log(valueKomponen);
                     msg = msg + " kg Co2";
+                    console.log(msg);
                     $('#komponen_value').html(msg);
                 },
                 error: function(data){

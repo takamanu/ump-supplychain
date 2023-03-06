@@ -49,7 +49,6 @@ class StockController extends Controller
         //     'harga_member' => '',
         //     'stok' => 'required'
         // ]);
-
         Stock::create([
             'user_id' => auth()->user()->id, 
             'components_name' => $request->components_name,

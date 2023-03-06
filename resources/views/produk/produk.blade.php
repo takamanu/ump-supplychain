@@ -8,10 +8,19 @@
               <div class="card-header">
                   <h2>Products list</h2>
               </div>
+              
               <div class="card-body">
+                @if(Auth::user()->role =='0')
+
                   <a href="{{ url('/produk/create') }}" class="btn btn-success btn-sm float-left" title="Add New Product">
                       <i class="fa fa-plus" aria-hidden="true"></i> Add new product
                   </a>
+                @elseif(Auth::user()->role =='1')
+                <a href="{{ url('/produk/create') }}" class="btn btn-success btn-sm float-left" title="Add New Product">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Add new product
+                </a>
+                @else
+                @endif
                   <div class="float-left">
                     <div class="col d-flex justify-content-center">
                         <button type="button" id="bukaqr" class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#qrModal" data-backdrop="static" data-keyboard="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
@@ -47,6 +56,16 @@
                         </div>
                     </div>
                 </div>
+                <form id="valueID" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search float-right">
+                    <div class="input-group">
+                        <input type="number" class="form-control bg-light border-0 small" name="search" id="search" placeholder="Check ID...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" name="submit">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
                   <form method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search float-right">
                       <div class="input-group">
                           <input type="text" class="form-control bg-light border-0 small" name="cari" id="cari" placeholder="Search for..."
@@ -91,7 +110,7 @@
                               
                                   <td>{{ $item->user->name}}</td>
 
-                                  <td><a href="#" title="View Produk"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a></td>
+                                  <td><button class="btn btn-info btn-sm" onclick="showDetail({{$item->id}})"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
                               </tr>
                           @endforeach
                           </tbody>
@@ -134,6 +153,49 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
     $(document).ready(function(){
+        $('#valueID').submit(function(e) {
+            id = $('#search').val();
+            console.log(id);
+
+            web3 = new Web3(new Web3.providers.HttpProvider('HTTP://127.0.0.1:7545'));
+
+        // Set the Contract
+                var contract = new web3.eth.Contract(contractAbi, contractAddress);
+                event.preventDefault(); // to prevent page reload when form is submitted
+                // greeting = $('input').val();
+            //$("#database").text(greeting);
+
+                contract.methods.searchProduct(id).call(function(err, result) {
+                    console.log(err, result)
+                    Swal.fire({
+                        icon : 'success',
+                        title : 'Sukses! ',
+                        confirmButtonColor:'#3085d6',
+                        confirmButtonText:'Ok',
+                        html:
+                                result,
+                    }).then((result)=>{
+                        contract.methods.getTotalValue(id).call(function(err, result) {
+                        console.log(err, result)
+                        Swal.fire({
+                            icon : 'success',
+                            title : 'Sukses! ',
+                            confirmButtonColor:'#3085d6',
+                            confirmButtonText:'Ok',
+                            html:
+                                    '<b>Your total carbon footprint is: <span style="color:blue">'+ result +' kg Co2</span></b>', 
+                            })
+                        })
+
+                    })
+                    // $(".cardstyle").show("fast","linear");
+                    // $("#database").html(result);
+                });
+            e.preventDefault();
+
+
+        });
+
         $('#bukaqr').click(function(){
             console.log("Test");
             let html5QrcodeScanner = new Html5QrcodeScanner(
@@ -172,6 +234,8 @@
     //         // This conditions should ideally not happen.
     //     });
     // };
+
+    
 
     
        

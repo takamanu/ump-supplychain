@@ -160,8 +160,8 @@ class ProdukController extends Controller
     }
 
     public function getvaluekomponen(Request $request){
-        $biarkepakeaja = DB::table('stocks')->where('id', $request->id)->value('components_value');
-        echo $biarkepakeaja;
+        // $biarkepakeaja = DB::table('stocks')->where('id', $request->id)->value('components_value');
+        // echo $biarkepakeaja;
         $hasil_komponen = DB::table('stocks')->where('id', request()->input('id'))->value('components_value');
         return $hasil_komponen;
     }

@@ -41,7 +41,7 @@
                                         </div>
                                     @endif
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login Dashboard ReLog Car Chain</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Login Dashboard ReLog Car Chain (Beta Version)</h1>
                                     </div>
                                     
                                     <form method="POST" action="{{ route('login') }}">
