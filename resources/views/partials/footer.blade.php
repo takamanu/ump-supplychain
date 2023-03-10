@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Kopti Salatiga 2022</span>
+            <span>Copyright &copy; ReLogCarChain 2023</span>
         </div>
     </div>
 </footer>

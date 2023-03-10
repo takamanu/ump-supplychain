@@ -218,7 +218,7 @@
                     console.log(err, result)
                     Swal.fire({
                         icon : 'success',
-                        title : 'Sukses! ',
+                        title : 'Success! ',
                         confirmButtonColor:'#3085d6',
                         confirmButtonText:'Ok',
                         html:
@@ -228,7 +228,7 @@
                         console.log(err, result)
                         Swal.fire({
                             icon : 'success',
-                            title : 'Sukses! ',
+                            title : 'Success! ',
                             confirmButtonColor:'#3085d6',
                             confirmButtonText:'Ok',
                             html:
@@ -244,7 +244,7 @@
                 //     console.log(err, result)
                 //     Swal.fire({
                 //         icon : 'success',
-                //         title : 'Sukses! ',
+                //         title : 'Success! ',
                 //         confirmButtonColor:'#3085d6',
                 //         confirmButtonText:'Ok',
                 //         html:
@@ -295,7 +295,7 @@
                 //             } else {
                 //             Swal.fire({
                 //                 icon : 'success',
-                //                 title : 'Sukses! ',
+                //                 title : 'Success! ',
                 //                 timer: 5000,
                 //                 html:
                 //                         '<b>'+ response.nama +'</b>, ' +

@@ -110,7 +110,7 @@
                               
                                   <td>{{ $item->user->name}}</td>
 
-                                  <td><button class="btn btn-info btn-sm" onclick="showDetail({{$item->id}})"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
+                                  <td><button class="btn btn-info btn-sm" onclick="showDetail({{$item->qr_code_produk}})"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
                               </tr>
                           @endforeach
                           </tbody>
@@ -152,6 +152,58 @@
     <script src="/assets/js/app.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
+        function showDetail(code) {
+            console.log(code);
+            id = code;
+            web3 = new Web3(new Web3.providers.HttpProvider('HTTP://127.0.0.1:7545'));
+
+        // Set the Contract
+                var contract = new web3.eth.Contract(contractAbi, contractAddress);
+                event.preventDefault(); // to prevent page reload when form is submitted
+                // greeting = $('input').val();
+            //$("#database").text(greeting);
+
+            contract.methods.searchProduct(id).call(function(err, result) {
+                console.log(err, result);
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success! ',
+                    confirmButtonColor:'#3085d6',
+                    confirmButtonText:'Ok',
+                    html: result
+                }).then(() => {
+                    return contract.methods.getTotalValue(id).call(function(err, result) {
+                        console.log(err, result);
+
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success! ',
+                            confirmButtonColor:'#3085d6',
+                            confirmButtonText:'Ok',
+                            html: '<b>Your total carbon footprint is: <span style="color:blue">'+ result +' kg Co2</span></b>',
+                        })
+                        .then(() => {
+                            return contract.methods.getTotalValue(id).call(function(err, result) {
+                                console.log(err, result);
+                                let treePlant = 0.0;
+                                treePlant = result * 0.3;
+
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success! ',
+                                    confirmButtonColor:'#3085d6',
+                                    confirmButtonText:'Ok',
+                                    html: '<b>Your must plant <span style="color:blue">'+ treePlant +' trees.</span></b>',
+                                });
+                            });
+                        });
+                    });
+                });
+            });
+        }
+    </script>
+    <script>
     $(document).ready(function(){
         $('#valueID').submit(function(e) {
             id = $('#search').val();
@@ -165,32 +217,45 @@
                 // greeting = $('input').val();
             //$("#database").text(greeting);
 
-                contract.methods.searchProduct(id).call(function(err, result) {
-                    console.log(err, result)
-                    Swal.fire({
-                        icon : 'success',
-                        title : 'Sukses! ',
-                        confirmButtonColor:'#3085d6',
-                        confirmButtonText:'Ok',
-                        html:
-                                result,
-                    }).then((result)=>{
-                        contract.methods.getTotalValue(id).call(function(err, result) {
-                        console.log(err, result)
+            contract.methods.searchProduct(id).call(function(err, result) {
+                console.log(err, result);
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success! ',
+                    confirmButtonColor:'#3085d6',
+                    confirmButtonText:'Ok',
+                    html: result
+                }).then(() => {
+                    return contract.methods.getTotalValue(id).call(function(err, result) {
+                        console.log(err, result);
+
                         Swal.fire({
-                            icon : 'success',
-                            title : 'Sukses! ',
+                            icon: 'success',
+                            title: 'Success! ',
                             confirmButtonColor:'#3085d6',
                             confirmButtonText:'Ok',
-                            html:
-                                    '<b>Your total carbon footprint is: <span style="color:blue">'+ result +' kg Co2</span></b>', 
-                            })
+                            html: '<b>Your total carbon footprint is: <span style="color:blue">'+ result +' kg Co2</span></b>',
                         })
+                        .then(() => {
+                            return contract.methods.getTotalValue(id).call(function(err, result) {
+                                console.log(err, result);
+                                let treePlant = 0.0;
+                                treePlant = result * 0.3;
 
-                    })
-                    // $(".cardstyle").show("fast","linear");
-                    // $("#database").html(result);
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success! ',
+                                    confirmButtonColor:'#3085d6',
+                                    confirmButtonText:'Ok',
+                                    html: '<b>Your must plant <span style="color:blue">'+ treePlant +' trees.</span></b>',
+                                });
+                            });
+                        });
+                    });
                 });
+            });
+            
             e.preventDefault();
 
 
@@ -283,7 +348,7 @@
                     console.log(err, result)
                     Swal.fire({
                         icon : 'success',
-                        title : 'Sukses! ',
+                        title : 'Success! ',
                         confirmButtonColor:'#3085d6',
                         confirmButtonText:'Ok',
                         html:
@@ -293,7 +358,7 @@
                         console.log(err, result)
                         Swal.fire({
                             icon : 'success',
-                            title : 'Sukses! ',
+                            title : 'Success! ',
                             confirmButtonColor:'#3085d6',
                             confirmButtonText:'Ok',
                             html:
@@ -309,7 +374,7 @@
                 //     console.log(err, result)
                 //     Swal.fire({
                 //         icon : 'success',
-                //         title : 'Sukses! ',
+                //         title : 'Success! ',
                 //         confirmButtonColor:'#3085d6',
                 //         confirmButtonText:'Ok',
                 //         html:
@@ -360,7 +425,7 @@
                 //             } else {
                 //             Swal.fire({
                 //                 icon : 'success',
-                //                 title : 'Sukses! ',
+                //                 title : 'Success! ',
                 //                 timer: 5000,
                 //                 html:
                 //                         '<b>'+ response.nama +'</b>, ' +

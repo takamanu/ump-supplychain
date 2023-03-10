@@ -68,7 +68,8 @@
                       <div class="col-md-6">
                         <label for="components_value" class="form-label">Carbon Value</label>
                           <div class="input-group">
-                            <input type="number" class="form-control w-75" name="components_value" id="components_value" required>
+                            <input type="number" class="form-control w-75" name="components_value" id="components_value" aria-describedby="basic-addon2" required>
+                            <span class="input-group-text" id="basic-addon2">kg Co2</span>
                         </div>
                       </div> 
                     </div>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class KatalogController extends Controller
 {
     public function index() {
-        return view('katalog.index');
+        return view('produk.produk');
     }
 
     public function create() {

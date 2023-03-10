@@ -32,7 +32,7 @@
                     <div class="card-body p-0">
                         <!-- Nested Row within Card Body -->
                         <div class="row">
-                            <div class="col-lg-6 d-flex justify-content-center"><img src="scmslogo.png" width="120%" alt="Kopti"/></div>
+                            <div class="col-lg-6 d-flex justify-content-center"><img src="Logo_2ReLogCarChain.jpg" width="120%" alt="Kopti"/></div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     @if (session('status'))
@@ -41,7 +41,7 @@
                                         </div>
                                     @endif
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Login Dashboard ReLog Car Chain (Beta Version)</h1>
+                                        <h1 class="h4 text-gray-900 mb-4">Login Dashboard 2ReLog Car Chain (Beta Version)</h1>
                                     </div>
                                     
                                     <form method="POST" action="{{ route('login') }}">
@@ -137,7 +137,7 @@
                                         </div>
                                         <hr>
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
-                                            {{ __('Masuk') }}
+                                            {{ __('Login') }}
                                         </button>
                                         <br>
                                         <p style="color:black;">Do you want to give feedback? <a href="/helpdesk">Click here</a></p>
@@ -292,7 +292,7 @@
                             } else {
                             Swal.fire({
                                 icon : 'success',
-                                title : 'Sukses! ',
+                                title : 'Success! ',
                                 timer: 5000,
                                 html:
                                         '<b>'+ response.nama +'</b>, ' +

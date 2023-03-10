@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
         {{-- <img src="/koptiLogo.jpg" width="50px" alt="Logo Kopti"> --}}
-        <div class="sidebar-brand-text mx-1.5">ReLog Car Chain v2</div>
+        <div class="sidebar-brand-text mx-1.5">2 ReLog Car Chain</div>
     </a>
 
     <!-- Divider -->
@@ -121,7 +121,7 @@
                 <a class="collapse-item {{ Request::is('katalog/create') ? 'active' : '' }}" href="/katalog/create">Send Product</a>
             @elseif(Auth::user()->role =='1')
                 <a class="collapse-item {{ Request::is('produk') ? 'active' : '' }}" href="/produk">List Product</a>
-                <a class="collapse-item {{ Request::is('produk/create') ? 'active' : '' }}" href="/produk">Add Product</a>
+                <a class="collapse-item {{ Request::is('produk/create') ? 'active' : '' }}" href="/produk/create">Add Product</a>
                 <a class="collapse-item {{ Request::is('katalog/create') ? 'active' : '' }}" href="/katalog/create">Send Product</a>
             @else
                 <a class="collapse-item {{ Request::is('produk') ? 'active' : '' }}" href="/produk">List Product</a>

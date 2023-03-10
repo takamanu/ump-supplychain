@@ -83,7 +83,8 @@
                                        <label>Enter Origin</label>
                                        <input class="form-control" id="from_places" placeholder="Enter Origin"/>
                                        <input id="origin" name="origin" required="" type="hidden"/>
-                                       <a onclick="getCurrentPosition()">Set Current Location</a>
+                                       <br>
+                                       <a class="btn-sm btn-primary" onclick="getCurrentPosition()"><i class="fa fa-map" aria-hidden="true"></i> Set Current Location</a>
                                     </div>
                                     <div class="form-group">
                                        <label>Enter Destination</label>
@@ -120,6 +121,9 @@
                            </div>
                         </div>
                      </div>
+                  
+                  <br><br>
+
                   <form id="form2" autocomplete="off">
 
                     <div class="row mb-3">
@@ -149,7 +153,7 @@
 
                     <div class="row mb-3">
                       <div class="col-md-6 d-flex">
-                          <div class="p-2"><a href="{{ url('/katalog') }}" class="btn btn-danger">Back</a>
+                          <div class="p-2"><a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>
                           </div>
                           <div class="p-2"><button type="submit" id="mansub" class="btn btn-primary">
                             {{ __('Update location') }}

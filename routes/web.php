@@ -51,7 +51,7 @@ Route::middleware(['auth'])->group(function(){
         return redirect('home');
     });
 
-    Route::resource('/transaksi', TransaksiController::class);
+    // Route::resource('/transaksi', TransaksiController::class);
     Route::resource('/persediaan', ProdukController::class);
     Route::resource('/agen', AgenController::class);
     Route::resource('/persediaan', StockController::class);
@@ -65,8 +65,8 @@ Route::middleware(['auth'])->group(function(){
     Route::resource('/profile', ProfileController::class);
     Route::get('/agen/create', [AgenController::class, 'create'])->name('create');
     Route::post('getProdukName', [ProdukController::class, 'getProdukName'])->name('getProdukName');
-    Route::post('getkabupaten', [AgenController::class, 'getkabupaten'])->name('getkabupaten');
-    Route::post('getkecamatan', [AgenController::class, 'getkecamatan'])->name('getkecamatan');
+    // Route::post('getkabupaten', [AgenController::class, 'getkabupaten'])->name('getkabupaten');
+    // Route::post('getkecamatan', [AgenController::class, 'getkecamatan'])->name('getkecamatan');
     Route::get('/agen/show/{item}', [AgenController::class, 'show']);
 
 

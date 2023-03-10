@@ -255,7 +255,7 @@
                                 
                                 <a href="{{ url()->previous() }}" class="btn btn-danger">Back</a>
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Tambah') }}
+                                    {{ __('Add Staff') }}
                                 </button>
                                 
                             </form>
@@ -280,58 +280,6 @@
 
 <!-- Custom scripts for all pages-->
 <script src="js/sb-admin-2.min.js"></script>
-<script>
-    $(function(){
-        $.ajaxSetup({
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
-        });
-
-        $(function(){
-            $('#provinsi').on('change', function(){
-                let id_provinsi = $('#provinsi').val();
-
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('getkabupaten') }}",
-                    data: {id_provinsi:id_provinsi},
-                    cache: false,
-
-                    success: function(msg){
-                        
-                        $('#kabupaten').html(msg).prepend('<option selected>Pilih salah satu</option>');
-                        $('#kecamatan').html(msg).prepend('<option selected>Pilih salah satu</option>');
-
-                    },
-                    error: function(data){
-                        console.log('error:', data)
-                    },
-                })
-            })
-
-            $('#kabupaten').on('change', function(){
-                let id_kabupaten = $('#kabupaten').val();
-
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('getkecamatan') }}",
-                    data: {id_kabupaten:id_kabupaten},
-                    cache: false,
-
-                    success: function(msg){
-                        $('#kecamatan').html(msg).prepend('<option selected>Pilih salah satu</option>');
-                        
-                        
-                    },
-                    error: function(data){
-                        console.log('error:', data)
-                    },
-                })
-            })
-
-        })
-    });
-    
-</script>
 
 </body>
 
