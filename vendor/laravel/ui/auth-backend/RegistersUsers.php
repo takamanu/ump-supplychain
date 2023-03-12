@@ -6,8 +6,6 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Agen;
-
 
 trait RegistersUsers
 {
@@ -20,8 +18,7 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        
-        return redirect('/agen/create');
+        return view('auth.register');
     }
 
     /**
@@ -35,8 +32,8 @@ trait RegistersUsers
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-        
-        // $this->guard()->login($user);
+
+        $this->guard()->login($user);
 
         if ($response = $this->registered($request, $user)) {
             return $response;
@@ -44,7 +41,7 @@ trait RegistersUsers
 
         return $request->wantsJson()
                     ? new JsonResponse([], 201)
-                    : redirect($this->redirectPath())->with('status', 'Sukses menambahkan pengguna baru.')->with('status2','Password bawaan adalah tanggal lahir pengguna tersebut.');
+                    : redirect($this->redirectPath());
     }
 
     /**

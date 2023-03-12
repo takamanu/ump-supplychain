@@ -34,10 +34,7 @@ class HomeController extends Controller
 
         $hello = 938239;
         $masuk = \DB::table('produks')->where('user_id', auth()->user()->id)->pluck('qr_code_produk');
-        echo '<script type="text/javascript">
-        alert("{{$hello}}");
-
-        </script>';
+        
 
 
         // $keluar = \DB::table('transaksis')->where('pembeli', auth()->user()->id)->whereMonth('created_at', Carbon::now()->month)->get()->sum('total_harga');

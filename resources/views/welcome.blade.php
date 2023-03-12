@@ -19,13 +19,56 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                {{-- Pemasukan ({{ $bulan }})</div> --}}
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                {{ $masuk }}
+                                Your carbon value total </div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="hasilTotal">
+                                
                             </div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            {{-- <i class="fas fa-calendar fa-2x text-gray-300"></i> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                Total trees you must've plant</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="pohonTotal">
+                                                                    
+                                                            </div>
+                        </div>
+                        <div class="col-auto">
+                            {{-- <i class="fas fa-dollar-sign fa-2x text-gray-300"></i> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Carbon Level
+                            </div>
+                            <div class="row no-gutters align-items-center">
+                                <div class="col-auto">
+                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" id="carbonLevel">
+                                                                                    
+                                                                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -233,5 +276,67 @@
     </script> --}}
 
     {{-- Script Chart --}}
+    <script src="/assets/js/web3.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"> </script>
+
+    <!-- QR Code Library-->
+
+    <!-- QR Code Reader -->
+	<script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js"></script>
+
+    <script src="/assets/js/app.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        var id = {!! json_encode($masuk->toArray()) !!};
+        var tambahCarbon = 0;
+        var valuePohon = 0;
+
+        $(document).ready(function(){
+            console.log(id);
+
+            web3 = new Web3(new Web3.providers.HttpProvider('HTTP://127.0.0.1:7545'));
+
+            // Set the Contract
+            var contract = new web3.eth.Contract(contractAbi, contractAddress); // to prevent page reload when form is submitted
+            // greeting = $('input').val();
+            //$("#database").text(greeting);
+
+            Promise.all(id.map((id) => {
+                return contract.methods.getTotalValue(id).call();
+            })).then((results) => {
+                console.log(results);
+                tambahCarbon = results.reduce((acc, cur) => acc + Number(cur), 0);
+                valuePohon = tambahCarbon * 0.3;
+                $("#hasilTotal").append(tambahCarbon + " kg Co2");
+                $("#pohonTotal").append(valuePohon + " trees");
+                tambahCarbon = 20000;
+                if (tambahCarbon > 30000) {
+                    $("#carbonLevel").append("<span style='color:red'><b>DANGEROUS</b>");
+
+                } else {
+                    $("#carbonLevel").append("<span style='color:green'><b>SAFE</b>");
+                }
+                
+            });
+        });
+        //     then(() => {
+        //             return contract.methods.getTotalValue(id).call(function(err, result) {
+        //                 console.log(err, result);
+        //                 let treePlant = 0.0;
+        //                 treePlant = result * 0.3;
+        //                 parseInt(treePlant, 10);
+        //                 valuePohon += treePlant;
+        //             })
+        //         })
+        //     })
+
+        // });
+
+        console.log('<b>Your total carbon footprint is: <span style="color:blue">'+ tambahCarbon +' kg Co2</span></b>');
+        console.log('<b>Your must plant <span style="color:blue">'+ valuePohon +' trees.</span></b>');
+
+    </script>
 @endsection
+
 
