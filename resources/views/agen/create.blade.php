@@ -158,7 +158,7 @@
                                                     <option value="1">Vendor</option>
                                                     <option value="1">Warehouse</option>
                                                     <option value="1">Wholesaler</option>
-                                                    <option value="0">Manufacturer</option>
+                                                    <option value="1">Manufacturer</option>
                                                     
                                                 </select>
                                                 @error('role')
@@ -176,7 +176,7 @@
                                                     <option value="1">Vendor</option>
                                                     <option value="1">Warehouse</option>
                                                     <option value="1">Wholesaler</option>
-                                                    <option value="0">Manufacturer</option>
+                                                    <option value="1">Manufacturer</option>
                                                     
                                                 </select>
                                                 @error('role')
@@ -194,7 +194,7 @@
                                                     <option value="1">Vendor</option>
                                                     <option value="1">Warehouse</option>
                                                     <option value="1">Wholesaler</option>
-                                                    <option value="0">Manufacturer</option>
+                                                    <option value="1">Manufacturer</option>
                                                     
                                                 </select>
                                                 @error('role')

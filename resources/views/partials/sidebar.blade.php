@@ -4,7 +4,7 @@
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
         {{-- <img src="/koptiLogo.jpg" width="50px" alt="Logo Kopti"> --}}
-        <div class="sidebar-brand-text mx-1.5">2 ReLog Car Chain</div>
+        <div class="sidebar-brand-text mx-1.5">2ReLogCarChain</div>
     </a>
 
     <!-- Divider -->
@@ -139,11 +139,11 @@
     </li> --}}
 
     <!-- Nav Item - Tables -->
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="/helpdesk">
             <i class="fas fa-fw fa-table"></i>
             <span>CRM</span></a>
-    </li>
+    </li> --}}
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

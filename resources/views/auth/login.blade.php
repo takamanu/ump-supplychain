@@ -140,7 +140,7 @@
                                             {{ __('Login') }}
                                         </button>
                                         <br>
-                                        <p style="color:black;">Do you want to give feedback? <a href="/helpdesk">Click here</a></p>
+                                        {{-- <p style="color:black;">Do you want to give feedback? <a href="/helpdesk">Click here</a></p> --}}
                                         <p style="color:black;">Not yet registered? <a href="{{ url('/registered') }}">Register here</a>
                                         </p>
                                         {{-- <a href="#" class="btn btn-google btn-user btn-block">
@@ -243,8 +243,8 @@
             csrf_token = $('meta[name="csrf-token"]').attr('content');
             Swal.fire({
                 
-                title : 'Sukses Login!',
-                text : 'Klik ok untuk melanjutkan!',
+                title : 'Login success!',
+                text : 'Click ok to continue',
                 confirmButtonColor:'#3085d6',
                 confirmButtonText:'Ok',
             }).then((result)=>{
@@ -276,8 +276,8 @@
                             if(response.status_error){
                                 Swal.fire({
                                     type: 'error',
-                                    title : 'Oh, tidak!',
-                                    text : 'QR code tidak ditemukan.'
+                                    title : 'Oh, no!',
+                                    text : 'QR code not found.'
                                 });
                             
                             // else if(hour >= numHour && minutes >= numMin){
@@ -296,7 +296,7 @@
                                 timer: 5000,
                                 html:
                                         '<b>'+ response.nama +'</b>, ' +
-                                        'berhasil login ' + ' WIB</b> !', 
+                                        'login success' + '</b> !', 
                             }).then(function(){
                                 window.location.href = "/";});
                             }

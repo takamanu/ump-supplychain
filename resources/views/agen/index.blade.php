@@ -61,9 +61,9 @@
                                         {{-- <td>{{ $item->updated_at }}</td> --}}
                                         {{-- <td>{{ $item->role }}</td> --}}
                                         @if($item->role =='1') 
-                                            <td>Admin</td>
+                                            <td>Manufacturer/Vendor/Transport</td>
                                         @elseif($item->role =='2') 
-                                            <td>Supervisor</td>    
+                                            <td>Customer</td>    
                                         @else
                                             <td>Member</td>
                                         

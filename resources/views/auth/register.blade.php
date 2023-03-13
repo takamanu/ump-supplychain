@@ -168,12 +168,12 @@
                                                         <select class="form-control @error('role') is-invalid @enderror" name="role" id="role" required>
                                                             <option value="" disabled selected>Select company role</option>
                                                             <option value="2">Customer</option>
-                                                            <option value="1">Retailer</option>
-                                                            <option value="1">Transport</option>
-                                                            <option value="1">Vendor</option>
-                                                            <option value="1">Warehouse</option>
+                                                            {{-- <option value="1">Retailer</option>
+                                                            <option value="1">Transport</option> --}}
+                                                            <option value="1">Vendor/Transport</option>
+                                                            {{-- <option value="1">Warehouse</option>
                                                             <option value="1">Wholesaler</option>
-                                                            <option value="0">Manufacturer</option>
+                                                            <option value="1">Manufacturer</option> --}}
                                                             
                                                         </select>
                                                         @error('role')

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             // $table->foreignId('produk_id');
             $table->char('user_id');
-            $table->string('prodname');
+            $table->string('components_name');
             $table->integer('components_value');
             $table->timestamps();
 

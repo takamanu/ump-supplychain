@@ -185,7 +185,7 @@ class AgenController extends Controller
     public function destroy($id)
     {
         Agen::destroy($id);
-        return redirect('agen')->with('status', 'Pengguna berhasil dihapus!');
+        return redirect('agen')->with('status', 'User has been deleted!');
     }
 
     public function validasiQR(Request $request)

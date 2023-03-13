@@ -172,7 +172,7 @@ class RegisterController extends Controller
                 'date_string' => Carbon::parse(request()->get('date'))->format('dmY'),
                 // 'added_by' => $data['added_by'],
                 'gender' => $data['gender'],
-                'password' => Hash::make($pass_date),
+                'password' => Hash::make(Carbon::parse(request()->get('date'))->format('dmY')),
             
             
             ]);

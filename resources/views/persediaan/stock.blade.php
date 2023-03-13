@@ -12,7 +12,7 @@
                   <a href="{{ url('/persediaan/create') }}" class="btn btn-success btn-sm float-left" title="Add New Product">
                       <i class="fa fa-plus" aria-hidden="true"></i> Add new components
                   </a>
-                  <div class="float-left">
+                  {{-- <div class="float-left">
                     <div class="col d-flex justify-content-center">
                         <button type="button" id="bukaqr" class="btn btn-primary btn-sm" href="#" data-toggle="modal" data-target="#qrModal" data-backdrop="static" data-keyboard="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-qr-code" viewBox="0 0 16 16">
                             <path d="M2 2h2v2H2V2Z"></path>
@@ -46,7 +46,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                   {{-- <form method="GET" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search float-right">
                       <div class="input-group">
                           <input type="text" class="form-control bg-light border-0 small" name="cari" id="cari" placeholder="Search product..."
@@ -189,8 +189,8 @@
             csrf_token = $('meta[name="csrf-token"]').attr('content');
             Swal.fire({
                 
-                title : 'Sukses Scan!',
-                text : 'Klik ok untuk melanjutkan!',
+                title : 'Scan success!!',
+                text : 'Click ok to continue',
                 confirmButtonColor:'#3085d6',
                 confirmButtonText:'Ok',
             }).then((result)=>{

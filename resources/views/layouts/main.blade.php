@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Kopti Virtual Office</title>
+    <title>2ReLogCarChain</title>
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -92,7 +92,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            @include('partials.footer')
+            {{-- @include('partials.footer') --}}
             <!-- End of Footer -->
 
         </div>

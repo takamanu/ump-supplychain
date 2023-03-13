@@ -319,8 +319,8 @@
             csrf_token = $('meta[name="csrf-token"]').attr('content');
             Swal.fire({
                 
-                title : 'Sukses Scan!',
-                text : 'Klik ok untuk melanjutkan!',
+                title : 'Scan success!!',
+                text : 'Click ok to continue',
                 confirmButtonColor:'#3085d6',
                 confirmButtonText:'Ok',
             }).then((result)=>{

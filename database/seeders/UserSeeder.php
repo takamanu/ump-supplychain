@@ -53,7 +53,7 @@ class UserSeeder extends Seeder
             
             'user_id' => $id,
             'qr_code_perusahaan' => Str::random(16),
-            'company_name' => 'Mcdonald Sdn. Bhd.',
+            'company_name' => 'Honda Sdn. Bhd.',
             'company_location' => 'Kuala Lumpur',
             
         ]);
