@@ -206,7 +206,7 @@ class AgenController extends Controller
             
         } else {
             return response()->json([
-                "status_error" => "Gagal Login"
+                "status_error" => "Login not success."
             ]);
 
         }
