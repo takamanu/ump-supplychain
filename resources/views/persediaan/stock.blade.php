@@ -78,7 +78,7 @@
                                   <th>Name</th>
                                   <th>Value</th>
                                   <th>Created by</th>
-                                  <th>Action</th>
+                                  {{-- <th>Action</th> --}}
                               </tr>
                           </thead>
                           <tbody>
@@ -90,7 +90,7 @@
                                   <td>{{ $item->components_value }} kg Co2</td>
                                   <td>{{ $item->user->name}}</td>
 
-                                  <td><a href="#" title="View Produk"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a></td>
+                                  {{-- <td><a href="#" title="View Produk"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a></td> --}}
                               </tr>
                           @endforeach
                           </tbody>

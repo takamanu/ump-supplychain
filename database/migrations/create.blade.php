@@ -94,7 +94,7 @@
                                     <div class="form-group">
                                        <label>Travel Mode</label>
                                        <select class="form-control" id="travel_mode" name="travel_mode">
-                                          <option value="DRIVING">Driving</option>
+                                          <option value="Click ok to continue">Click ok to continue</option>
                                        </select>
                                     </div>
                                     <input class="btn btn-primary" type="submit" value="Find" style="background: #8142b1; width: 100%; border: 0px;" />
